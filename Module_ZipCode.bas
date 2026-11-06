@@ -1,57 +1,57 @@
 Attribute VB_Name = "Module_ZipCode"
 Option Explicit
-' ѓ‚ѓWѓ…Ѓ[ѓ‹ЉT—vЃF —X•Ц‹З‚МCSVѓfЃ[ѓ^ЃiKEN_ALL.csvЃj‚рѓЃѓ‚ѓЉ‚Ц“WЉJ‚µЃAЏZЏЉ‚©‚з—X•Ц”ФЌ†‚рЊџЌх‚Ё‚ж‚С’…ђF‚·‚йЃB
-'   1. CSV“ЗЌћЋћ‚Й•Ўђ”Ќs•ЄЉ„ѓЊѓRЃ[ѓh‚рЊ‹Ќ‡‚µЃAђі‹K‰»ЏZЏЉ‚ЖЊџЌх—pѓCѓ“ѓfѓbѓNѓXЃiDictionaryЃj‚рЌмђ¬‚·‚йЃB
-'   2. ЏZЏЉЊџЌхЋћ‚НЃu“s“№•{Њ§Ѓ{Ћs‹ж’¬‘єЃiЊSЏИ—Є‘О‰ћЃjЃv‚ЕЊу•в‚рЌi‚иЌћ‚ЭЃAЃu’¬€ж–јЃv‚МЌЕ’·€к’v‚Е“Б’и‚·‚йЃB
-'   3. Ѓu€И‰є‚ЙЊfЌЪ‚Є‚И‚ўЏкЌ‡Ѓv‚вЃu’љ–ЪЃE”Ф’n‚М”Н€НЋw’иЃvЃuЃi‚»‚М‘јЃjЃvЃu‘еЋљЃEЋљ‚М•\‹L‚д‚кЃv‚Й‘О‰ћ‚·‚йЃB
-'   4. •Ўђ”Њу•в‚М—X•Ц”ФЌ†Џo—Н‚Жѓ}ѓbѓ`ѓ“ѓOЏо•с‚М•t‹L‚рЌs‚¤ЃB
-'   5. Њ‹‰КЏo—НЋћЃAЊџЌхЊі‚МѓZѓ‹‚Жѓ}ѓXѓ^•¶Ћљ—с‚р”дЉr‚µЃA€к’v•”•Є‚рђФђF‚Е’…ђF‚·‚йЃB
-' ==============================================================================EvaluateNumericRange
+' гѓўг‚ёгѓҐгѓјгѓ«ж¦‚и¦Ѓпјљ йѓµдѕїе±ЂгЃ®CSVгѓ‡гѓјг‚їпј€KEN_ALL.csvпј‰г‚’гѓЎгѓўгѓЄгЃёе±•й–‹гЃ—гЂЃдЅЏж‰ЂгЃ‹г‚‰йѓµдѕїз•ЄеЏ·г‚’ж¤њзґўгЃЉг‚€гЃізќЂи‰ІгЃ™г‚‹гЂ‚
+'   1. CSVиЄ­иѕјж™‚гЃ«и¤‡ж•°иЎЊе€†е‰Ігѓ¬г‚ігѓјгѓ‰г‚’зµђеђ€гЃ—гЂЃж­Ји¦ЏеЊ–дЅЏж‰ЂгЃЁж¤њзґўз”Ёг‚¤гѓігѓ‡гѓѓг‚Їг‚№пј€Dictionaryпј‰г‚’дЅњж€ђгЃ™г‚‹гЂ‚
+'   2. дЅЏж‰Ђж¤њзґўж™‚гЃЇгЂЊйѓЅйЃ“еєњзњЊпј‹её‚еЊєз”єжќ‘пј€йѓЎзњЃз•ҐеЇѕеїњпј‰гЂЌгЃ§еЂ™иЈњг‚’зµћг‚ЉиѕјгЃїгЂЃгЂЊз”єеџџеђЌгЂЌгЃ®жњЂй•·дёЂи‡ґгЃ§з‰№е®љгЃ™г‚‹гЂ‚
+'   3. гЂЊд»Ґдё‹гЃ«жЋІиј‰гЃЊгЃЄгЃ„е ґеђ€гЂЌг‚„гЂЊдёЃз›®гѓ»з•Єењ°гЃ®зЇ„е›ІжЊ‡е®љгЂЌгЂЊпј€гЃќгЃ®д»–пј‰гЂЌгЂЊе¤§е­—гѓ»е­—гЃ®иЎЁиЁг‚†г‚ЊгЂЌгЃ«еЇѕеїњгЃ™г‚‹гЂ‚
+'   4. и¤‡ж•°еЂ™иЈњгЃ®йѓµдѕїз•ЄеЏ·е‡єеЉ›гЃЁгѓћгѓѓгѓЃгѓіг‚°жѓ…е ±гЃ®д»иЁг‚’иЎЊгЃ†гЂ‚
+'   5. зµђжћње‡єеЉ›ж™‚гЂЃж¤њзґўе…ѓгЃ®г‚»гѓ«гЃЁгѓћг‚№г‚їж–‡е­—е€—г‚’жЇ”ијѓгЃ—гЂЃдёЂи‡ґйѓЁе€†г‚’иµ¤и‰ІгЃ§зќЂи‰ІгЃ™г‚‹гЂ‚
+' ==============================================================================
 
-' [ѓ‚ѓWѓ…Ѓ[ѓ‹’иђ”ЃEЌ\‘ў‘МЃE•Пђ”‚МђйЊѕ]
-    ' CSV—сѓCѓ“ѓfѓbѓNѓX’иђ”ЃF Split(",")‚Е•ЄЉ„‚µ‚ЅЌЫ‚М0Ћn‚Ь‚и”z—сѓCѓ“ѓfѓbѓNѓX‚р’и‹`‚·‚йЃB
-    Private Const CSV_COL_ZIP As Long = 2   ' —X•Ц”ФЌ†ЃiC—сЃj
-    Private Const CSV_COL_PREF As Long = 6  ' “s“№•{Њ§ЃiG—сЃj
-    Private Const CSV_COL_CITY As Long = 7  ' Ћs‹ж’¬‘єЃiH—сЃj
-    Private Const CSV_COL_TOWN As Long = 8  ' ’¬€ж–јЃiI—сЃj
+' [гѓўг‚ёгѓҐгѓјгѓ«е®љж•°гѓ»ж§‹йЂ дЅ“гѓ»е¤‰ж•°гЃ®е®ЈиЁЂ]
+    ' CSVе€—г‚¤гѓігѓ‡гѓѓг‚Їг‚№е®љж•°пјљ Split(",")гЃ§е€†е‰ІгЃ—гЃџйљ›гЃ®0е§‹гЃѕг‚Љй…Ќе€—г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’е®љзѕ©гЃ™г‚‹гЂ‚
+    Private Const CSV_COL_ZIP As Long = 2   ' йѓµдѕїз•ЄеЏ·пј€Cе€—пј‰
+    Private Const CSV_COL_PREF As Long = 6  ' йѓЅйЃ“еєњзњЊпј€Gе€—пј‰
+    Private Const CSV_COL_CITY As Long = 7  ' её‚еЊєз”єжќ‘пј€Hе€—пј‰
+    Private Const CSV_COL_TOWN As Long = 8  ' з”єеџџеђЌпј€Iе€—пј‰
 
-    ' —X•Ц”ФЌ†ѓ}ѓXѓ^Ќ\‘ў‘МЃF •\Ћ¦—pђ¶ѓfЃ[ѓ^‚ЖЊџЌх—pђі‹K‰»ѓfЃ[ѓ^‚р•ЫЋќ‚·‚йЃB
+    ' йѓµдѕїз•ЄеЏ·гѓћг‚№г‚їж§‹йЂ дЅ“пјљ иЎЁз¤єз”Ёз”џгѓ‡гѓјг‚їгЃЁж¤њзґўз”Ёж­Ји¦ЏеЊ–гѓ‡гѓјг‚їг‚’дїќжЊЃгЃ™г‚‹гЂ‚
     Private Type ZipMasterData
-        ZipCode As String                   ' —X•Ц”ФЌ†Ѓi7Њ…Ѓj
-        PrefectureRaw As String             ' “s“№•{Њ§Ѓiђ¶ѓfЃ[ѓ^Ѓj
-        CityRaw As String                   ' Ћs‹ж’¬‘єЃiђ¶ѓfЃ[ѓ^Ѓj
-        TownRaw As String                   ' ’¬€ж–јЃiђ¶ѓfЃ[ѓ^Ѓj
-        FullAddressWithParen As String      ' ЏZЏЉ‘S‘М1Ѓi“s“№•{Њ§Ѓ{Ћs‹ж’¬‘єЃ{Љ‡ЊК‚рЉЬ‚Ю’¬€ж–јЃj
-        FullAddressNoParen As String        ' ЏZЏЉ‘S‘М2Ѓi“s“№•{Њ§Ѓ{Ћs‹ж’¬‘єЃ{Љ‡ЊК‚рЏњ‚ў‚Ѕ’¬€ж–јЃj
-        NormalizedPref As String            ' ђі‹K‰»“s“№•{Њ§
-        normalizedCity As String            ' ђі‹K‰»Ћs‹ж’¬‘є
-        NormalizedTown As String            ' ђі‹K‰»’¬€ж–јЃiЉ‡ЊК‚рЉЬ‚Ь‚И‚ўЃj
-        NormalizedTownCore As String        ' ѓRѓA’¬€ж–јЃiђж“Є‚МЃu‘еЋљЃvЃuЏ¬ЋљЃvЃuЋљЃv‚рЏњ‹Ћ‚µ‚Ѕ’¬€ж–јЃj
-        NormalizedNoPref As String          ' ђі‹K‰»Ћs‹ж’¬‘єЃ{’¬€ж–јЃiЉ‡ЊК‚рЉЬ‚ЮЃj
+        ZipCode As String                   ' йѓµдѕїз•ЄеЏ·пј€7жЎЃпј‰
+        PrefectureRaw As String             ' йѓЅйЃ“еєњзњЊпј€з”џгѓ‡гѓјг‚їпј‰
+        CityRaw As String                   ' её‚еЊєз”єжќ‘пј€з”џгѓ‡гѓјг‚їпј‰
+        TownRaw As String                   ' з”єеџџеђЌпј€з”џгѓ‡гѓјг‚їпј‰
+        FullAddressWithParen As String      ' дЅЏж‰Ђе…ЁдЅ“1пј€йѓЅйЃ“еєњзњЊпј‹её‚еЊєз”єжќ‘пј‹ж‹¬еј§г‚’еђ«г‚Ђз”єеџџеђЌпј‰
+        FullAddressNoParen As String        ' дЅЏж‰Ђе…ЁдЅ“2пј€йѓЅйЃ“еєњзњЊпј‹её‚еЊєз”єжќ‘пј‹ж‹¬еј§г‚’й™¤гЃ„гЃџз”єеџџеђЌпј‰
+        NormalizedPref As String            ' ж­Ји¦ЏеЊ–йѓЅйЃ“еєњзњЊ
+        normalizedCity As String            ' ж­Ји¦ЏеЊ–её‚еЊєз”єжќ‘
+        NormalizedTown As String            ' ж­Ји¦ЏеЊ–з”єеџџеђЌпј€ж‹¬еј§г‚’еђ«гЃѕгЃЄгЃ„пј‰
+        NormalizedTownCore As String        ' г‚іг‚ўз”єеџџеђЌпј€е…€й ­гЃ®гЂЊе¤§е­—гЂЌгЂЊе°Џе­—гЂЌгЂЊе­—гЂЌг‚’й™¤еЋ»гЃ—гЃџз”єеџџеђЌпј‰
+        NormalizedNoPref As String          ' ж­Ји¦ЏеЊ–её‚еЊєз”єжќ‘пј‹з”єеџџеђЌпј€ж‹¬еј§г‚’еђ«г‚Ђпј‰
     End Type
 
-    ' ѓtѓ@ѓCѓ‹‚Ё‚ж‚СѓVЃ[ѓg–ј’иђ”ЃF “ЗЌћЊіCSVѓtѓ@ѓCѓ‹–ј‚Ж“ьЏo—НѓVЃ[ѓg–ј‚р’и‹`‚·‚йЃB
-    Private Const CSV_FILE_—X•ЦѓRЃ[ѓh As String = "\KEN_ALL.csv"
-    Private Const SHEET_NAME_ЊџЌх As String = "ЊџЌх"
-    Private Const SHEET_NAME_—X•ЦѓRЃ[ѓh As String = "ЌнЏњ‰ВЃi—X•ЦѓRЃ[ѓhЃj"
+    ' гѓ•г‚Ўг‚¤гѓ«гЃЉг‚€гЃіг‚·гѓјгѓ€еђЌе®љж•°пјљ иЄ­иѕје…ѓCSVгѓ•г‚Ўг‚¤гѓ«еђЌгЃЁе…Ґе‡єеЉ›г‚·гѓјгѓ€еђЌг‚’е®љзѕ©гЃ™г‚‹гЂ‚
+    Private Const CSV_FILE_йѓµдѕїг‚ігѓјгѓ‰ As String = "\KEN_ALL.csv"
+    Private Const SHEET_NAME_ж¤њзґў As String = "ж¤њзґў"
+    Private Const SHEET_NAME_йѓµдѕїг‚ігѓјгѓ‰ As String = "е‰Љй™¤еЏЇпј€йѓµдѕїг‚ігѓјгѓ‰пј‰"
 
-    ' ѓ‚ѓWѓ…Ѓ[ѓ‹ѓЊѓxѓ‹ѓLѓѓѓbѓVѓ…•Пђ”ЃF ѓ}ѓXѓ^‘SЊЏ”z—с‚ЖЊџЌх—pDictionary‚рѓЃѓ‚ѓЉЏг‚Й•ЫЋќ‚·‚йЃB
+    ' гѓўг‚ёгѓҐгѓјгѓ«гѓ¬гѓ™гѓ«г‚­гѓЈгѓѓг‚·гѓҐе¤‰ж•°пјљ гѓћг‚№г‚їе…Ёд»¶й…Ќе€—гЃЁж¤њзґўз”ЁDictionaryг‚’гѓЎгѓўгѓЄдёЉгЃ«дїќжЊЃгЃ™г‚‹гЂ‚
     Private pMasterDataCache() As ZipMasterData
     Private pMasterCount As Long
     Private pIsCacheLoaded As Boolean
-    Private pSearchIndex As Object          ' ЊџЌхѓCѓ“ѓfѓbѓNѓXЃiKeyЃFђі‹K‰»Њ§Ѓ{Ћs‹ж’¬‘єЃAValueЃFCollectionЃj
-    Private pCityToPrefMap As Object        ' ‹t€ш‚«Ћ«Џ‘ЃiKeyЃFђі‹K‰»Ћs‹ж’¬‘єЃAValueЃF“s“№•{Њ§ђ¶ѓfЃ[ѓ^Ѓj
+    Private pSearchIndex As Object          ' ж¤њзґўг‚¤гѓігѓ‡гѓѓг‚Їг‚№пј€Keyпјљж­Ји¦ЏеЊ–зњЊпј‹её‚еЊєз”єжќ‘гЂЃValueпјљCollectionпј‰
+    Private pCityToPrefMap As Object        ' йЂ†еј•гЃЌиѕћж›ёпј€Keyпјљж­Ји¦ЏеЊ–её‚еЊєз”єжќ‘гЂЃValueпјљйѓЅйЃ“еєњзњЊз”џгѓ‡гѓјг‚їпј‰
     
 ' ==============================================================================
-' --- ѓLѓѓѓbѓVѓ…Џу‘ФЋж“ѕѓvѓЌѓpѓeѓB ---
-' ѓ}ѓXѓ^ѓfЃ[ѓ^‚ЄѓЃѓ‚ѓЉ‚Й“WЉJЌП‚Э‚©‚З‚¤‚©‚р•Ф‚·ЃB
+' --- г‚­гѓЈгѓѓг‚·гѓҐзЉ¶ж…‹еЏ–еѕ—гѓ—гѓ­гѓ‘гѓ†г‚Ј ---
+' гѓћг‚№г‚їгѓ‡гѓјг‚їгЃЊгѓЎгѓўгѓЄгЃ«е±•й–‹жё€гЃїгЃ‹гЃ©гЃ†гЃ‹г‚’иї”гЃ™гЂ‚
 Public Property Get IsCacheLoaded() As Boolean
     IsCacheLoaded = pIsCacheLoaded
 End Property
 
 ' ==============================================================================
-' --- ѓ}ѓXѓ^“ЗЌћ‚ЖѓVЃ[ѓgЏo—НЏ€—ќ ---
-' CSVѓtѓ@ѓCѓ‹‚р“З‚ЭЌћ‚ЭЃA•Ўђ”ЌsЊ‹Ќ‡‚Жђі‹K‰»‚рЌs‚Б‚ДѓЃѓ‚ѓЉ‚ЦЉi”[‚·‚йЃB
+' --- гѓћг‚№г‚їиЄ­иѕјгЃЁг‚·гѓјгѓ€е‡єеЉ›е‡¦зђ† ---
+' CSVгѓ•г‚Ўг‚¤гѓ«г‚’иЄ­гЃїиѕјгЃїгЂЃи¤‡ж•°иЎЊзµђеђ€гЃЁж­Ји¦ЏеЊ–г‚’иЎЊгЃЈгЃ¦гѓЎгѓўгѓЄгЃёж јзґЌгЃ™г‚‹гЂ‚
 Sub LoadMasterAndExportSheet()
     Dim csvFilePath As String
     Dim fso As Object
@@ -77,29 +77,29 @@ Sub LoadMasterAndExportSheet()
     Dim tStart As Double
     Dim response As VbMsgBoxResult
 
-    ' [ЋАЌsЉm”F‚ЖCSVѓtѓ@ѓCѓ‹‚М‘¶ЌЭѓ`ѓFѓbѓN]
-    ' “ЗЌћЉJЋn‚МЉm”FЃF ѓ†Ѓ[ѓUЃ[‚ЦCSV“ЗЌћ‚МЋАЌs‰В”Ы‚рЉm”F‚·‚йЃB
-    response = MsgBox("—X•Ц”ФЌ†ѓfЃ[ѓ^ЃiCSVЃj‚рѓЃѓ‚ѓЉ‚ЙЉi”[‚µ‚Ь‚·ЃB" & vbCrLf & _
-                     " Ѓi—X•Ц‹ЗHP —X•Ц”ФЌ†ѓfЃ[ѓ^ѓ_ѓEѓ“ѓЌЃ[ѓhЃj" & vbCrLf & _
-                     " KEN_ALL.csv ‚р“Ї‚¶ѓtѓHѓ‹ѓ_‚Й‰р“Ђ‚µ‚Д‚Ё‚­", vbYesNo + vbInformation, "ѓ}ѓXѓ^ѓfЃ[ѓ^“З‚ЭЌћ‚Э")
+    ' [е®џиЎЊзўєиЄЌгЃЁCSVгѓ•г‚Ўг‚¤гѓ«гЃ®е­ењЁгѓЃг‚§гѓѓг‚Ї]
+    ' иЄ­иѕјй–‹е§‹гЃ®зўєиЄЌпјљ гѓ¦гѓјг‚¶гѓјгЃёCSVиЄ­иѕјгЃ®е®џиЎЊеЏЇеђ¦г‚’зўєиЄЌгЃ™г‚‹гЂ‚
+    response = MsgBox("йѓµдѕїз•ЄеЏ·гѓ‡гѓјг‚їпј€CSVпј‰г‚’гѓЎгѓўгѓЄгЃ«ж јзґЌгЃ—гЃѕгЃ™гЂ‚" & vbCrLf & _
+                     " пј€йѓµдѕїе±ЂHP йѓµдѕїз•ЄеЏ·гѓ‡гѓјг‚їгѓЂг‚¦гѓігѓ­гѓјгѓ‰пј‰" & vbCrLf & _
+                     " KEN_ALL.csv г‚’еђЊгЃгѓ•г‚©гѓ«гѓЂгЃ«и§Је‡ЌгЃ—гЃ¦гЃЉгЃЏ", vbYesNo + vbInformation, "гѓћг‚№г‚їгѓ‡гѓјг‚їиЄ­гЃїиѕјгЃї")
     If response <> vbYes Then
         Exit Sub
     End If
 
-    ' ѓtѓ@ѓCѓ‹‘¶ЌЭЉm”FЃF ѓuѓbѓN‚Ж“Ї€кѓtѓHѓ‹ѓ_‚ЙKEN_ALL.csv‚Є‘¶ЌЭ‚·‚й‚©ЊџЏШ‚·‚йЃB
-    csvFilePath = ThisWorkbook.Path & CSV_FILE_—X•ЦѓRЃ[ѓh
+    ' гѓ•г‚Ўг‚¤гѓ«е­ењЁзўєиЄЌпјљ гѓ–гѓѓг‚ЇгЃЁеђЊдёЂгѓ•г‚©гѓ«гѓЂгЃ«KEN_ALL.csvгЃЊе­ењЁгЃ™г‚‹гЃ‹ж¤њиЁјгЃ™г‚‹гЂ‚
+    csvFilePath = ThisWorkbook.Path & CSV_FILE_йѓµдѕїг‚ігѓјгѓ‰
     Set fso = CreateObject("Scripting.FileSystemObject")
     If Not fso.FileExists(csvFilePath) Then
-        MsgBox "ѓGѓ‰Ѓ[: CSVѓtѓ@ѓCѓ‹‚ЄЊ©‚В‚©‚и‚Ь‚№‚сЃB" & vbCrLf & csvFilePath, vbCritical
+        MsgBox "г‚Ёгѓ©гѓј: CSVгѓ•г‚Ўг‚¤гѓ«гЃЊи¦‹гЃ¤гЃ‹г‚ЉгЃѕгЃ›г‚“гЂ‚" & vbCrLf & csvFilePath, vbCritical
         Exit Sub
     End If
 
     tStart = Timer
     Call ToggleOptimizations(False)
-    Call frm_msgЏ€—ќ’†OP
+    Call frm_msgе‡¦зђ†дё­OP
 
-    ' [ADODB.Stream‚Й‚ж‚йCSVѓtѓ@ѓCѓ‹‚М“З‚ЭЌћ‚Э]
-    ' ѓeѓLѓXѓg€кЉ‡“ЗЌћЃF Shift_JISЊ`Ћ®‚ЕCSV‚рЉJ‚«ЃA‰ьЌsѓRЃ[ѓh‚рLF‚Й“ќ€к‚µ‚ДЌs”z—с‚Ц•ЄЉ„‚·‚йЃB
+    ' [ADODB.StreamгЃ«г‚€г‚‹CSVгѓ•г‚Ўг‚¤гѓ«гЃ®иЄ­гЃїиѕјгЃї]
+    ' гѓ†г‚­г‚№гѓ€дёЂж‹¬иЄ­иѕјпјљ Shift_JISеЅўејЏгЃ§CSVг‚’й–‹гЃЌгЂЃж”№иЎЊг‚ігѓјгѓ‰г‚’LFгЃ«зµ±дёЂгЃ—гЃ¦иЎЊй…Ќе€—гЃёе€†е‰ІгЃ™г‚‹гЂ‚
     Set adoStream = CreateObject("ADODB.Stream")
     On Error GoTo ReadError
     With adoStream
@@ -114,19 +114,19 @@ Sub LoadMasterAndExportSheet()
 
     lineCount = UBound(fileContent) + 1
     If lineCount < 1 Then
-        MsgBox "CSVѓfЃ[ѓ^‚Є‹у‚Е‚·ЃB", vbExclamation
+        MsgBox "CSVгѓ‡гѓјг‚їгЃЊз©єгЃ§гЃ™гЂ‚", vbExclamation
         GoTo Cleanup
     End If
 
-    ' Љm”F—pѓVЃ[ѓgЏo—Н‚М‘I‘рЃF ѓЃѓ‚ѓЉ“WЉJЊг‚ЙѓfѓoѓbѓO—pѓVЃ[ѓg‚ЦЏ‘‚«Џo‚·‚©Љm”F‚·‚йЃB
-    response = MsgBox("Љm”F—pЃi—X•ЦѓRЃ[ѓhЃj‚рЃu" & SHEET_NAME_—X•ЦѓRЃ[ѓh & "ЃvѓVЃ[ѓg‚ЙЏo—Н‚µ‚Ь‚·‚©ЃH" & vbCrLf & vbCrLf & _
-                     "Ѓi*** ѓЃѓ‚ѓЉЉi”[‚Н•K‚ёЋАЌs‚і‚к‚Ь‚·ЃB***Ѓj", vbYesNo + vbQuestion, "ѓVЃ[ѓgЏo—НЉm”F")
+    ' зўєиЄЌз”Ёг‚·гѓјгѓ€е‡єеЉ›гЃ®йЃёжЉћпјљ гѓЎгѓўгѓЄе±•й–‹еѕЊгЃ«гѓ‡гѓђгѓѓг‚°з”Ёг‚·гѓјгѓ€гЃёж›ёгЃЌе‡єгЃ™гЃ‹зўєиЄЌгЃ™г‚‹гЂ‚
+    response = MsgBox("зўєиЄЌз”Ёпј€йѓµдѕїг‚ігѓјгѓ‰пј‰г‚’гЂЊ" & SHEET_NAME_йѓµдѕїг‚ігѓјгѓ‰ & "гЂЌг‚·гѓјгѓ€гЃ«е‡єеЉ›гЃ—гЃѕгЃ™гЃ‹пјџ" & vbCrLf & vbCrLf & _
+                     "пј€*** гѓЎгѓўгѓЄж јзґЌгЃЇеї…гЃље®џиЎЊгЃ•г‚ЊгЃѕгЃ™гЂ‚***пј‰", vbYesNo + vbQuestion, "г‚·гѓјгѓ€е‡єеЉ›зўєиЄЌ")
     If response = vbYes Then
-        Set wsMasterOutput = GetOrCreateSheet(SHEET_NAME_—X•ЦѓRЃ[ѓh)
+        Set wsMasterOutput = GetOrCreateSheet(SHEET_NAME_йѓµдѕїг‚ігѓјгѓ‰)
     End If
  
-    ' [ѓЃѓ‚ѓЉ“WЉJ‚ЖЊџЌх—pѓCѓ“ѓfѓbѓNѓX‚МЌ\’z]
-    ' ѓLѓѓѓbѓVѓ…”z—с‚ЖЋ«Џ‘‚МЏ‰Љъ‰»ЃF Ќsђ”•Є‚М”z—с‚ЖЊџЌх—pDictionary‚рђ¶ђ¬‚·‚йЃB
+    ' [гѓЎгѓўгѓЄе±•й–‹гЃЁж¤њзґўз”Ёг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж§‹зЇ‰]
+    ' г‚­гѓЈгѓѓг‚·гѓҐй…Ќе€—гЃЁиѕћж›ёгЃ®е€ќжњџеЊ–пјљ иЎЊж•°е€†гЃ®й…Ќе€—гЃЁж¤њзґўз”ЁDictionaryг‚’з”џж€ђгЃ™г‚‹гЂ‚
     ReDim pMasterDataCache(1 To lineCount)
     Set pSearchIndex = CreateObject("Scripting.Dictionary")
     Set pCityToPrefMap = CreateObject("Scripting.Dictionary")
@@ -134,7 +134,7 @@ Sub LoadMasterAndExportSheet()
     recIdx = 0
     isMergingParen = False
 
-    ' ‘SЌs‰рђНѓ‹Ѓ[ѓvЃF ЉeЌs‚рѓJѓ“ѓ}•ЄЉ„‚µЃA•Ўђ”Ќs‚ЙЊЧ‚Є‚й’¬€ж–ј‚рЊ‹Ќ‡‚µ‚И‚Є‚зЌ\‘ў‘М‚ЦЉi”[‚·‚йЃB
+    ' е…ЁиЎЊи§Јжћђгѓ«гѓјгѓ—пјљ еђ„иЎЊг‚’г‚«гѓігѓће€†е‰ІгЃ—гЂЃи¤‡ж•°иЎЊгЃ«и·ЁгЃЊг‚‹з”єеџџеђЌг‚’зµђеђ€гЃ—гЃЄгЃЊг‚‰ж§‹йЂ дЅ“гЃёж јзґЌгЃ™г‚‹гЂ‚
     For i = 0 To lineCount - 1
         csvLineText = Trim(Replace(fileContent(i), vbCr, ""))
         If csvLineText <> "" Then
@@ -146,14 +146,14 @@ Sub LoadMasterAndExportSheet()
                 tempCityRaw = Replace(rawData(CSV_COL_CITY), """", "")
                 tempTownRaw = Replace(rawData(CSV_COL_TOWN), """", "")
 
-                ' •ЄЉ„ѓЊѓRЃ[ѓh‚МAЊ‹ЃF ’ј‘OЌs‚МЉJ‚«Љ‡ЊК‚Є•В‚¶‚Д‚Ё‚з‚ё“Ї€к—X•Ц”ФЌ†ЃEЋs‹ж’¬‘є‚Е‚ ‚к‚О’¬€ж–ј‚рЊ‹Ќ‡‚·‚йЃB
+                ' е€†е‰Ігѓ¬г‚ігѓјгѓ‰гЃ®йЂЈзµђпјљ з›ґе‰ЌиЎЊгЃ®й–‹гЃЌж‹¬еј§гЃЊй–‰гЃгЃ¦гЃЉг‚‰гЃљеђЊдёЂйѓµдѕїз•ЄеЏ·гѓ»её‚еЊєз”єжќ‘гЃ§гЃ‚г‚ЊгЃ°з”єеџџеђЌг‚’зµђеђ€гЃ™г‚‹гЂ‚
                 If isMergingParen And recIdx > 0 Then
                     If pMasterDataCache(recIdx).ZipCode = tempZipRaw And _
                        pMasterDataCache(recIdx).PrefectureRaw = tempPrefRaw And _
                        pMasterDataCache(recIdx).CityRaw = tempCityRaw Then
                         
                         pMasterDataCache(recIdx).TownRaw = pMasterDataCache(recIdx).TownRaw & tempTownRaw
-                        If InStr(tempTownRaw, "Ѓj") > 0 Or InStr(tempTownRaw, ")") > 0 Then
+                        If InStr(tempTownRaw, "пј‰") > 0 Or InStr(tempTownRaw, ")") > 0 Then
                             isMergingParen = False
                         End If
                         Call FinalizeMasterRecord(recIdx)
@@ -163,7 +163,7 @@ Sub LoadMasterAndExportSheet()
                     End If
                 End If
 
-                ' ђV‹KѓЊѓRЃ[ѓh‚М“o^ЃF ”z—сѓCѓ“ѓfѓbѓNѓX‚рђi‚Я‚ДЉо–{ЌЂ–Ъ‚рЉi”[‚·‚йЃB
+                ' ж–°и¦Џгѓ¬г‚ігѓјгѓ‰гЃ®з™»йЊІпјљ й…Ќе€—г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’йЂІг‚ЃгЃ¦еџєжњ¬й …з›®г‚’ж јзґЌгЃ™г‚‹гЂ‚
                 recIdx = recIdx + 1
                 With pMasterDataCache(recIdx)
                     .ZipCode = tempZipRaw
@@ -172,17 +172,17 @@ Sub LoadMasterAndExportSheet()
                     .TownRaw = tempTownRaw
                 End With
 
-                ' Љ‡ЊК–ў•ВЌЅ‚М”»’иЃF ЉJ‚«Љ‡ЊК‚Є‚ ‚и•В‚¶Љ‡ЊК‚Є‚И‚ўЏкЌ‡‚НЋџЌsЊ‹Ќ‡ѓtѓ‰ѓO‚р—LЊш‚Й‚·‚йЃB
-                If (InStr(tempTownRaw, "Ѓi") > 0 And InStr(tempTownRaw, "Ѓj") = 0) Then
+                ' ж‹¬еј§жњЄй–‰йЋ–гЃ®е€¤е®љпјљ й–‹гЃЌж‹¬еј§гЃЊгЃ‚г‚Љй–‰гЃж‹¬еј§гЃЊгЃЄгЃ„е ґеђ€гЃЇж¬ЎиЎЊзµђеђ€гѓ•гѓ©г‚°г‚’жњ‰еЉ№гЃ«гЃ™г‚‹гЂ‚
+                If (InStr(tempTownRaw, "пј€") > 0 And InStr(tempTownRaw, "пј‰") = 0) Then
                     isMergingParen = True
                 Else
                     isMergingParen = False
                 End If
 
-                ' ђі‹K‰»•¶Ћљ—с‚Мђ¶ђ¬ЃF Ќ\‘ў‘М‚МЊџЌх—pѓtѓBЃ[ѓ‹ѓh‚Ё‚ж‚С•\Ћ¦—pѓtѓBЃ[ѓ‹ѓh‚рЉm’и‚·‚йЃB
+                ' ж­Ји¦ЏеЊ–ж–‡е­—е€—гЃ®з”џж€ђпјљ ж§‹йЂ дЅ“гЃ®ж¤њзґўз”Ёгѓ•г‚Јгѓјгѓ«гѓ‰гЃЉг‚€гЃіиЎЁз¤єз”Ёгѓ•г‚Јгѓјгѓ«гѓ‰г‚’зўєе®љгЃ™г‚‹гЂ‚
                 Call FinalizeMasterRecord(recIdx)
 
-                ' ѓCѓ“ѓfѓbѓNѓX“o^ЃF Ѓu“s“№•{Њ§Ѓ{Ћs‹ж’¬‘єЃv‚рѓLЃ[‚Ж‚µ‚ДѓЊѓRЃ[ѓh”ФЌ†‚рCollection‚Ц’З‰Б‚·‚йЃB
+                ' г‚¤гѓігѓ‡гѓѓг‚Їг‚№з™»йЊІпјљ гЂЊйѓЅйЃ“еєњзњЊпј‹её‚еЊєз”єжќ‘гЂЌг‚’г‚­гѓјгЃЁгЃ—гЃ¦гѓ¬г‚ігѓјгѓ‰з•ЄеЏ·г‚’CollectionгЃёиїЅеЉ гЃ™г‚‹гЂ‚
                 With pMasterDataCache(recIdx)
                     dictKey = .NormalizedPref & .normalizedCity
                     If Not pSearchIndex.Exists(dictKey) Then
@@ -190,7 +190,7 @@ Sub LoadMasterAndExportSheet()
                     End If
                     pSearchIndex(dictKey).Add recIdx
 
-                    ' ЊSЏИ—ЄѓTѓuѓLЃ[‚М“o^ЃF ЊS–ј‚рЏИ‚ў‚Ѕ“ь—НЏZЏЉ‚Е‚аЊџЌх‚Е‚«‚й‚ж‚¤ѓTѓuѓLЃ[‚р’З‰Б‚·‚йЃB
+                    ' йѓЎзњЃз•Ґг‚µгѓ–г‚­гѓјгЃ®з™»йЊІпјљ йѓЎеђЌг‚’зњЃгЃ„гЃџе…ҐеЉ›дЅЏж‰ЂгЃ§г‚‚ж¤њзґўгЃ§гЃЌг‚‹г‚€гЃ†г‚µгѓ–г‚­гѓјг‚’иїЅеЉ гЃ™г‚‹гЂ‚
                     subKeyNoGun = RemoveGunFromCity(.normalizedCity)
                     If subKeyNoGun <> .normalizedCity And subKeyNoGun <> "" Then
                         Dim altKey As String
@@ -201,7 +201,7 @@ Sub LoadMasterAndExportSheet()
                         pSearchIndex(altKey).Add recIdx
                     End If
 
-                    ' “s“№•{Њ§‹t€ш‚«ѓ}ѓbѓv‚М“o^ЃF “s“№•{Њ§ЏИ—ЄЋћ‚ЙЋs‹ж’¬‘є–ј‚©‚з“s“№•{Њ§‚р“Б’и‚·‚йЋ«Џ‘‚рЌмђ¬‚·‚йЃB
+                    ' йѓЅйЃ“еєњзњЊйЂ†еј•гЃЌгѓћгѓѓгѓ—гЃ®з™»йЊІпјљ йѓЅйЃ“еєњзњЊзњЃз•Ґж™‚гЃ«её‚еЊєз”єжќ‘еђЌгЃ‹г‚‰йѓЅйЃ“еєњзњЊг‚’з‰№е®љгЃ™г‚‹иѕћж›ёг‚’дЅњж€ђгЃ™г‚‹гЂ‚
                     If .normalizedCity <> "" Then
                         pCityToPrefMap(.normalizedCity) = .PrefectureRaw
                         If subKeyNoGun <> .normalizedCity And subKeyNoGun <> "" Then
@@ -217,14 +217,14 @@ ContinueLoop:
         If i Mod 2000 = 0 Then DoEvents
     Next i
 
-    ' ѓLѓѓѓbѓVѓ…”z—с‚МѓЉѓTѓCѓYЃF Њ‹Ќ‡Џ€—ќЊг‚М—LЊшѓЊѓRЃ[ѓhђ”‚ЙЌ‡‚н‚№‚Д”z—сѓTѓCѓY‚рЉm’и‚·‚йЃB
+    ' г‚­гѓЈгѓѓг‚·гѓҐй…Ќе€—гЃ®гѓЄг‚µг‚¤г‚єпјљ зµђеђ€е‡¦зђ†еѕЊгЃ®жњ‰еЉ№гѓ¬г‚ігѓјгѓ‰ж•°гЃ«еђ€г‚ЏгЃ›гЃ¦й…Ќе€—г‚µг‚¤г‚єг‚’зўєе®љгЃ™г‚‹гЂ‚
     pMasterCount = recIdx
     If pMasterCount > 0 Then
         ReDim Preserve pMasterDataCache(1 To pMasterCount)
     End If
 
-    ' [Љm”F—pѓVЃ[ѓg‚Ц‚М€кЉ‡Џ‘‚«Џo‚µ]
-    ' ѓVЃ[ѓgЏo—Н‚МЋАЌsЃF Џo—Н‚Є‘I‘р‚і‚к‚ЅЏкЌ‡‚М‚Э2ЋџЊі”z—с‚рЌ\’z‚µ‚ДѓVЃ[ѓg‚Ц€кЉ‡“]‘—‚·‚йЃB
+    ' [зўєиЄЌз”Ёг‚·гѓјгѓ€гЃёгЃ®дёЂж‹¬ж›ёгЃЌе‡єгЃ—]
+    ' г‚·гѓјгѓ€е‡єеЉ›гЃ®е®џиЎЊпјљ е‡єеЉ›гЃЊйЃёжЉћгЃ•г‚ЊгЃџе ґеђ€гЃ®гЃї2ж¬Ўе…ѓй…Ќе€—г‚’ж§‹зЇ‰гЃ—гЃ¦г‚·гѓјгѓ€гЃёдёЂж‹¬и»ўйЂЃгЃ™г‚‹гЂ‚
     If response = vbYes And Not wsMasterOutput Is Nothing And pMasterCount > 0 Then
         ReDim outputData(1 To pMasterCount, 1 To 8)
         For i = 1 To pMasterCount
@@ -242,7 +242,7 @@ ContinueLoop:
 
         With wsMasterOutput
             .Cells.Clear
-            .Cells.Font.Name = "BIZ UDѓSѓVѓbѓN"
+            .Cells.Font.Name = "BIZ UDг‚ґг‚·гѓѓг‚Ї"
             .Cells.Font.Size = 9
 
             .Range("A1:H1").Value = Array("ZipCode", _
@@ -267,12 +267,12 @@ ContinueLoop:
         Erase outputData
     End If
 
-    ' [Љ®—№’К’m‚ЖѓЉѓ\Ѓ[ѓX‰р•ъ]
+    ' [е®Њдє†йЂљзџҐгЃЁгѓЄг‚Ѕгѓјг‚№и§Јж”ѕ]
     pIsCacheLoaded = True
 
-    Call frm_msgЏ€—ќ’†CL
-    MsgBox "ѓ}ѓXѓ^ѓfЃ[ѓ^Ѓi" & Format(pMasterCount, "#,##0") & "ЊЏЃj‚М“З‚ЭЌћ‚ЭЉ®—№ЃB" & vbCrLf & _
-             "Џ€—ќЋћЉФ: " & Format(Timer - tStart, "0.00") & "•b", vbInformation
+    Call frm_msgе‡¦зђ†дё­CL
+    MsgBox "гѓћг‚№г‚їгѓ‡гѓјг‚їпј€" & Format(pMasterCount, "#,##0") & "д»¶пј‰гЃ®иЄ­гЃїиѕјгЃїе®Њдє†гЂ‚" & vbCrLf & _
+             "е‡¦зђ†ж™‚й–“: " & Format(Timer - tStart, "0.00") & "з§’", vbInformation
 Cleanup:
     Call ToggleOptimizations(True)
     Set adoStream = Nothing
@@ -280,29 +280,29 @@ Cleanup:
     Exit Sub
 
 ReadError:
-    Call frm_msgЏ€—ќ’†CL
-    MsgBox "ѓtѓ@ѓCѓ‹“З‚ЭЌћ‚ЭѓGѓ‰Ѓ[: " & Err.Description, vbCritical
+    Call frm_msgе‡¦зђ†дё­CL
+    MsgBox "гѓ•г‚Ўг‚¤гѓ«иЄ­гЃїиѕјгЃїг‚Ёгѓ©гѓј: " & Err.Description, vbCritical
     Resume Cleanup
 End Sub
 
 ' ==============================================================================
-' --- ѓ}ѓXѓ^ѓЊѓRЃ[ѓhЉm’иЏ€—ќ ---
-' 1ѓЊѓRЃ[ѓh•Є‚М•\Ћ¦—p•¶Ћљ—с‚Ё‚ж‚Сђі‹K‰»•¶Ћљ—с‚рђ¶ђ¬‚·‚йЃB
+' --- гѓћг‚№г‚їгѓ¬г‚ігѓјгѓ‰зўєе®ље‡¦зђ† ---
+' 1гѓ¬г‚ігѓјгѓ‰е€†гЃ®иЎЁз¤єз”Ёж–‡е­—е€—гЃЉг‚€гЃіж­Ји¦ЏеЊ–ж–‡е­—е€—г‚’з”џж€ђгЃ™г‚‹гЂ‚
 Private Sub FinalizeMasterRecord(ByVal recIdx As Long)
     Dim townForSearchRaw As String
     With pMasterDataCache(recIdx)
-        ' “БЋк•¶Њѕ‚МЏњЉOЃF Ѓu€И‰є‚ЙЊfЌЪ‚Є‚И‚ўЏкЌ‡Ѓv‚вѓrѓ‹ЏњЉO’Ќ‹L‚М‚Э‚МѓЊѓRЃ[ѓh‚НЊџЌх’¬–ј‚р‹у—“‚Ж‚·‚йЃB
+        ' з‰№ж®Љж–‡иЁЂгЃ®й™¤е¤–пјљ гЂЊд»Ґдё‹гЃ«жЋІиј‰гЃЊгЃЄгЃ„е ґеђ€гЂЌг‚„гѓ“гѓ«й™¤е¤–жіЁиЁгЃ®гЃїгЃ®гѓ¬г‚ігѓјгѓ‰гЃЇж¤њзґўз”єеђЌг‚’з©єж¬„гЃЁгЃ™г‚‹гЂ‚
         townForSearchRaw = .TownRaw
-        If townForSearchRaw = "€И‰є‚ЙЊfЌЪ‚Є‚И‚ўЏкЌ‡" Or _
-           (InStr(townForSearchRaw, "Ћџ‚Мѓrѓ‹‚рЏњ‚­") > 0 And Left(townForSearchRaw, 1) = "Ѓi") Then
+        If townForSearchRaw = "д»Ґдё‹гЃ«жЋІиј‰гЃЊгЃЄгЃ„е ґеђ€" Or _
+           (InStr(townForSearchRaw, "ж¬ЎгЃ®гѓ“гѓ«г‚’й™¤гЃЏ") > 0 And Left(townForSearchRaw, 1) = "пј€") Then
             townForSearchRaw = ""
         End If
 
-        ' •\Ћ¦—p•¶Ћљ—с‚МђЭ’иЃF Љ‡ЊК‚ ‚и‚ЖЉ‡ЊК‚И‚µ‚МЉ®‘SЏZЏЉ•¶Ћљ—с‚р‚»‚к‚ј‚к•ЫЋќ‚·‚йЃB
+        ' иЎЁз¤єз”Ёж–‡е­—е€—гЃ®иЁ­е®љпјљ ж‹¬еј§гЃ‚г‚ЉгЃЁж‹¬еј§гЃЄгЃ—гЃ®е®Ње…ЁдЅЏж‰Ђж–‡е­—е€—г‚’гЃќг‚ЊгЃћг‚ЊдїќжЊЃгЃ™г‚‹гЂ‚
         .FullAddressWithParen = .PrefectureRaw & .CityRaw & .TownRaw
         .FullAddressNoParen = .PrefectureRaw & .CityRaw & RemoveRangeSuffixTownName(townForSearchRaw)
 
-        ' ђі‹K‰»•¶Ћљ—с‚МђЭ’иЃF “s“№•{Њ§ЃAЋs‹ж’¬‘єЃA’¬€ж–јЃA‚Ё‚ж‚Сђж“Є‚М‘еЋљЃEЋљ‚рЏњ‚ў‚ЅѓRѓA’¬–ј‚р•ЫЋќ‚·‚йЃB
+        ' ж­Ји¦ЏеЊ–ж–‡е­—е€—гЃ®иЁ­е®љпјљ йѓЅйЃ“еєњзњЊгЂЃеё‚еЊєз”єжќ‘гЂЃз”єеџџеђЌгЂЃгЃЉг‚€гЃіе…€й ­гЃ®е¤§е­—гѓ»е­—г‚’й™¤гЃ„гЃџг‚іг‚ўз”єеђЌг‚’дїќжЊЃгЃ™г‚‹гЂ‚
         .NormalizedPref = NormalizeAddress(.PrefectureRaw)
         .normalizedCity = NormalizeAddress(.CityRaw)
         .NormalizedTown = NormalizeAddress(RemoveRangeSuffixTownName(townForSearchRaw))
@@ -312,8 +312,8 @@ Private Sub FinalizeMasterRecord(ByVal recIdx As Long)
 End Sub
 
 ' ==============================================================================
-' --- ЏZЏЉЊџЌхѓЃѓCѓ“Џ€—ќ ---
-' ЊџЌхѓVЃ[ѓg‚М“ь—НЏZЏЉ‚р“З‚ЭЌћ‚ЭЃA—X•Ц”ФЌ†‚М“Б’и‚ЖђФђF’…ђF‚рЋАЌs‚·‚йЃB
+' --- дЅЏж‰Ђж¤њзґўгѓЎг‚¤гѓіе‡¦зђ† ---
+' ж¤њзґўг‚·гѓјгѓ€гЃ®е…ҐеЉ›дЅЏж‰Ђг‚’иЄ­гЃїиѕјгЃїгЂЃйѓµдѕїз•ЄеЏ·гЃ®з‰№е®љгЃЁиµ¤и‰ІзќЂи‰Іг‚’е®џиЎЊгЃ™г‚‹гЂ‚
 Sub ExecuteAddressSearch()
     Dim wsSearchInput As Worksheet
     Dim lastRow As Long
@@ -323,19 +323,19 @@ Sub ExecuteAddressSearch()
     Dim i As Long
     Dim tStart As Double
 
-    ' [Ћ–‘OЊџЏШ‚Ж“ь—НѓfЃ[ѓ^‚МЋж“ѕ]
-    ' ѓLѓѓѓbѓVѓ…Џу‘Ф‚МЉm”FЃF ѓ}ѓXѓ^–ў“ЗЌћ‚МЏкЌ‡‚НѓЃѓbѓZЃ[ѓW‚р•\Ћ¦‚µ‚ДЏI—№‚·‚йЃB
+    ' [дє‹е‰Ќж¤њиЁјгЃЁе…ҐеЉ›гѓ‡гѓјг‚їгЃ®еЏ–еѕ—]
+    ' г‚­гѓЈгѓѓг‚·гѓҐзЉ¶ж…‹гЃ®зўєиЄЌпјљ гѓћг‚№г‚їжњЄиЄ­иѕјгЃ®е ґеђ€гЃЇгѓЎгѓѓг‚»гѓјг‚ёг‚’иЎЁз¤єгЃ—гЃ¦зµ‚дє†гЃ™г‚‹гЂ‚
     If Not pIsCacheLoaded Then
-        MsgBox "ђж‚ЙЃuѓ}ѓXѓ^“З‚ЭЌћ‚ЭЃv‚рЋАЌs‚µ‚Д‚­‚ѕ‚і‚ўЃB", vbExclamation
+        MsgBox "е…€гЃ«гЂЊгѓћг‚№г‚їиЄ­гЃїиѕјгЃїгЂЌг‚’е®џиЎЊгЃ—гЃ¦гЃЏгЃ гЃ•гЃ„гЂ‚", vbExclamation
         Exit Sub
     End If
 
-    ' “ь—Н”Н€Н‚МЋж“ѕЃF B—с‚МЌЕЏIЌs‚рЋж“ѕ‚µЃAѓfЃ[ѓ^‚Є‘¶ЌЭ‚µ‚И‚ўЏкЌ‡‚НЏI—№‚·‚йЃB
-    Set wsSearchInput = ThisWorkbook.Sheets(SHEET_NAME_ЊџЌх)
+    ' е…ҐеЉ›зЇ„е›ІгЃ®еЏ–еѕ—пјљ Bе€—гЃ®жњЂзµ‚иЎЊг‚’еЏ–еѕ—гЃ—гЂЃгѓ‡гѓјг‚їгЃЊе­ењЁгЃ—гЃЄгЃ„е ґеђ€гЃЇзµ‚дє†гЃ™г‚‹гЂ‚
+    Set wsSearchInput = ThisWorkbook.Sheets(SHEET_NAME_ж¤њзґў)
     lastRow = wsSearchInput.Cells(wsSearchInput.Rows.Count, "B").End(xlUp).Row
-    If lastRow < 3 Then MsgBox "ѓfЃ[ѓ^‚Є‚ ‚и‚Ь‚№‚сЃB", vbExclamation: Exit Sub
+    If lastRow < 3 Then MsgBox "гѓ‡гѓјг‚їгЃЊгЃ‚г‚ЉгЃѕгЃ›г‚“гЂ‚", vbExclamation: Exit Sub
 
-    ' “ь—Н”z—с‚МЌ\’zЃF 1Ќs‚М‚Э‚МЏкЌ‡‚Е‚а2ЋџЊі”z—с‚Ж‚µ‚Д€µ‚¦‚й‚ж‚¤Љi”[‚·‚йЃB
+    ' е…ҐеЉ›й…Ќе€—гЃ®ж§‹зЇ‰пјљ 1иЎЊгЃ®гЃїгЃ®е ґеђ€гЃ§г‚‚2ж¬Ўе…ѓй…Ќе€—гЃЁгЃ—гЃ¦ж‰±гЃ€г‚‹г‚€гЃ†ж јзґЌгЃ™г‚‹гЂ‚
     Set rngInputData = wsSearchInput.Range("B3:B" & lastRow)
     If rngInputData.Rows.Count = 1 Then
         ReDim arrInputAddress(1 To 1, 1 To 1)
@@ -344,32 +344,32 @@ Sub ExecuteAddressSearch()
         arrInputAddress = rngInputData.Value
     End If
 
-    ' [Џo—Н—М€ж‚МЏ‰Љъ‰»‚ЖЊџЌхѓ‹Ѓ[ѓv‚МЋАЌs]
-    ' ѓVЃ[ѓgЏ‰Љъ‰»ЃF Љщ‘¶‚МЊџЌхЊ‹‰К‚Ё‚ж‚СB—с‚М•¶ЋљђF‚рѓЉѓZѓbѓg‚µЃAѓwѓbѓ_Ѓ[‚рђЭ’и‚·‚йЃB
+    ' [е‡єеЉ›й еџџгЃ®е€ќжњџеЊ–гЃЁж¤њзґўгѓ«гѓјгѓ—гЃ®е®џиЎЊ]
+    ' г‚·гѓјгѓ€е€ќжњџеЊ–пјљ ж—ўе­гЃ®ж¤њзґўзµђжћњгЃЉг‚€гЃіBе€—гЃ®ж–‡е­—и‰Іг‚’гѓЄг‚»гѓѓгѓ€гЃ—гЂЃгѓгѓѓгѓЂгѓјг‚’иЁ­е®љгЃ™г‚‹гЂ‚
     ReDim arrResult(1 To UBound(arrInputAddress, 1), 1 To 4)
     With wsSearchInput
-        ' A—с‚Н–ј‘O‚вЊџЏШ•Є—Ю“™‚М”C€У“ь—НѓGѓЉѓA‚М‚Ѕ‚ЯѓNѓЉѓA‘ОЏЫЉO‚Ж‚·‚йЃB
+        ' Aе€—гЃЇеђЌе‰Ќг‚„ж¤њиЁје€†йЎћз­‰гЃ®д»»ж„Џе…ҐеЉ›г‚ЁгѓЄг‚ўгЃ®гЃџг‚Ѓг‚ЇгѓЄг‚ўеЇѕи±Ўе¤–гЃЁгЃ™г‚‹гЂ‚
 'xx     .Range("A3").Resize(UBound(arrInputAddress, 1), 1).ClearContents
         .Range("B3").Resize(UBound(arrInputAddress, 1), 1).Font.ColorIndex = xlAutomatic
         .Range("C3").Resize(UBound(arrInputAddress, 1), 4).ClearContents
-        .Range("C2:F2").Value = Array("—X•Ц”ФЌ†", "FullAddressNoParen", "TownRaw", "ѓ}ѓbѓ`ѓ“ѓOЏо•с")
+        .Range("C2:F2").Value = Array("йѓµдѕїз•ЄеЏ·", "FullAddressNoParen", "TownRaw", "гѓћгѓѓгѓЃгѓіг‚°жѓ…е ±")
     End With
 
     tStart = Timer
     Call ToggleOptimizations(False)
 
-    ' ЊџЌхѓ‹Ѓ[ѓvЃF ЉeЌs‚МЏZЏЉ•¶Ћљ—с‚Й‘О‚µ‚Д—X•Ц”ФЌ†“Б’иЏ€—ќ‚рЋАЌs‚·‚йЃB
+    ' ж¤њзґўгѓ«гѓјгѓ—пјљ еђ„иЎЊгЃ®дЅЏж‰Ђж–‡е­—е€—гЃ«еЇѕгЃ—гЃ¦йѓµдѕїз•ЄеЏ·з‰№е®ље‡¦зђ†г‚’е®џиЎЊгЃ™г‚‹гЂ‚
     For i = 1 To UBound(arrInputAddress, 1)
         Call FindMatchesForAddress(CStr(arrInputAddress(i, 1)), arrResult, i)
     Next i
 
-    ' [ЊџЌхЊ‹‰К‚М€кЉ‡Џo—Н‚Ж€к’v•¶Ћљ‚М’…ђF]
-    ' Њ‹‰К”z—с‚МЏ‘‚«Ќћ‚ЭЃF C?F—с‚ЦЊџЌхЊ‹‰К‚р€кЉ‡‚ЕЏo—Н‚·‚йЃB
+    ' [ж¤њзґўзµђжћњгЃ®дёЂж‹¬е‡єеЉ›гЃЁдёЂи‡ґж–‡е­—гЃ®зќЂи‰І]
+    ' зµђжћњй…Ќе€—гЃ®ж›ёгЃЌиѕјгЃїпјљ C?Fе€—гЃёж¤њзґўзµђжћњг‚’дёЂж‹¬гЃ§е‡єеЉ›гЃ™г‚‹гЂ‚
     wsSearchInput.Range("C3").Resize(UBound(arrResult, 1), 4).Value = arrResult
 
-    ' €к’v•”•Є‚МђФђF’…ђFЃF ЉY“–‚ ‚и‚МЌs‚Й‘О‚µ‚Д“ь—НѓZѓ‹‚Жѓ}ѓXѓ^•¶Ћљ—с‚МЏЖЌ‡’…ђF‚рЌs‚¤ЃB
+    ' дёЂи‡ґйѓЁе€†гЃ®иµ¤и‰ІзќЂи‰Іпјљ и©ІеЅ“гЃ‚г‚ЉгЃ®иЎЊгЃ«еЇѕгЃ—гЃ¦е…ҐеЉ›г‚»гѓ«гЃЁгѓћг‚№г‚їж–‡е­—е€—гЃ®з…§еђ€зќЂи‰Іг‚’иЎЊгЃ†гЂ‚
     For i = 1 To UBound(arrInputAddress, 1)
-        If CStr(arrResult(i, 1)) <> "ЉY“–‚И‚µ" And CStr(arrInputAddress(i, 1)) <> "" Then
+        If CStr(arrResult(i, 1)) <> "и©ІеЅ“гЃЄгЃ—" And CStr(arrInputAddress(i, 1)) <> "" Then
             Call ColorMatchInCell(wsSearchInput, i + 2, _
                                   CStr(arrInputAddress(i, 1)), _
                                   CStr(arrResult(i, 2)), _
@@ -378,21 +378,21 @@ Sub ExecuteAddressSearch()
     Next i
 
     Call ToggleOptimizations(True)
-    MsgBox "ЊџЌхЉ®—№ (" & UBound(arrInputAddress, 1) & "ЊЏ)" & vbCrLf & _
-             "Џ€—ќЋћЉФ: " & Format(Timer - tStart, "0.00") & "•b", vbInformation
+    MsgBox "ж¤њзґўе®Њдє† (" & UBound(arrInputAddress, 1) & "д»¶)" & vbCrLf & _
+             "е‡¦зђ†ж™‚й–“: " & Format(Timer - tStart, "0.00") & "з§’", vbInformation
 End Sub
 
 ' ==============================================================================
-' --- ЏZЏЉ•Кѓ}ѓbѓ`ѓ“ѓOђ§Њд ---
-' “s“№•{Њ§•вЉ®‚ЖЋs‹ж’¬‘єѓCѓ“ѓfѓbѓNѓXЊџЌх‚рЌs‚ўЃA’¬–јѓ}ѓbѓ`ѓ“ѓO‚рЊД‚СЏo‚·ЃB
+' --- дЅЏж‰Ђе€ҐгѓћгѓѓгѓЃгѓіг‚°е€¶еѕЎ ---
+' йѓЅйЃ“еєњзњЊиЈње®ЊгЃЁеё‚еЊєз”єжќ‘г‚¤гѓігѓ‡гѓѓг‚Їг‚№ж¤њзґўг‚’иЎЊгЃ„гЂЃз”єеђЌгѓћгѓѓгѓЃгѓіг‚°г‚’е‘јгЃіе‡єгЃ™гЂ‚
 Private Sub FindMatchesForAddress(ByVal rawAddress As String, ByRef resultArray() As Variant, ByVal rowIndex As Long)
     Dim trimmedRaw As String
     Dim inputSearchKey As String
     Dim inputNormalized As String
     Dim foundPref As String
 
-    ' Џ‰Љъ’l‚МђЭ’иЃF ЊџЌхЊ‹‰К‚МЏ‰ЉъЏу‘Ф‚Ж‚µ‚ДЃuЉY“–‚И‚µЃv‚рѓZѓbѓg‚·‚йЃB
-    resultArray(rowIndex, 1) = "ЉY“–‚И‚µ"
+    ' е€ќжњџеЂ¤гЃ®иЁ­е®љпјљ ж¤њзґўзµђжћњгЃ®е€ќжњџзЉ¶ж…‹гЃЁгЃ—гЃ¦гЂЊи©ІеЅ“гЃЄгЃ—гЂЌг‚’г‚»гѓѓгѓ€гЃ™г‚‹гЂ‚
+    resultArray(rowIndex, 1) = "и©ІеЅ“гЃЄгЃ—"
     resultArray(rowIndex, 2) = "***"
     resultArray(rowIndex, 3) = ""
     resultArray(rowIndex, 4) = ""
@@ -400,7 +400,7 @@ Private Sub FindMatchesForAddress(ByVal rawAddress As String, ByRef resultArray(
     trimmedRaw = Trim(rawAddress)
     If trimmedRaw = "" Then Exit Sub
 
-    ' “s“№•{Њ§‚М•вЉ®‚Жђі‹K‰»ЃF ђж“Є‚Й“s“№•{Њ§‚Є‚И‚ўЏкЌ‡‚НЋs‹ж’¬‘є–ј‚©‚з‹t€ш‚«‚µ‚Д•вЉ®‚·‚йЃB
+    ' йѓЅйЃ“еєњзњЊгЃ®иЈње®ЊгЃЁж­Ји¦ЏеЊ–пјљ е…€й ­гЃ«йѓЅйЃ“еєњзњЊгЃЊгЃЄгЃ„е ґеђ€гЃЇеё‚еЊєз”єжќ‘еђЌгЃ‹г‚‰йЂ†еј•гЃЌгЃ—гЃ¦иЈње®ЊгЃ™г‚‹гЂ‚
     If IsAddressPrefectureStart(trimmedRaw) Then
         inputSearchKey = trimmedRaw
     Else
@@ -408,10 +408,10 @@ Private Sub FindMatchesForAddress(ByVal rawAddress As String, ByRef resultArray(
         inputSearchKey = foundPref & trimmedRaw
     End If
 
-    ' “ь—Н•¶Ћљ—с‚Мђі‹K‰»ЃF ”Ф’n‹жђШ‚и•¶Ћљ‚р•ЫЋќ‚µ‚ЅЏу‘Ф‚Е‘SЉp‰»ЃEЉїђ”Ћљ•ПЉ·‚рЋАЌs‚·‚йЃB
+    ' е…ҐеЉ›ж–‡е­—е€—гЃ®ж­Ји¦ЏеЊ–пјљ з•Єењ°еЊєе€‡г‚Љж–‡е­—г‚’дїќжЊЃгЃ—гЃџзЉ¶ж…‹гЃ§е…Ёи§’еЊ–гѓ»жјўж•°е­—е¤‰жЏ›г‚’е®џиЎЊгЃ™г‚‹гЂ‚
     inputNormalized = NormalizeAddress(inputSearchKey)
 
-    ' Ћs‹ж’¬‘єѓCѓ“ѓfѓbѓNѓX‚МЌЕ’·€к’vЊџЌхЃF ђж“Є‚©‚з•¶Ћљђ”‚рђL‚О‚µ‚И‚Є‚зDictionary‚р’јђЪЋQЏЖ‚·‚йЃB
+    ' её‚еЊєз”єжќ‘г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®жњЂй•·дёЂи‡ґж¤њзґўпјљ е…€й ­гЃ‹г‚‰ж–‡е­—ж•°г‚’дјёгЃ°гЃ—гЃЄгЃЊг‚‰Dictionaryг‚’з›ґжЋҐеЏ‚з…§гЃ™г‚‹гЂ‚
     Dim targetIndices As Collection
     Dim bestKey As String
     Dim tryLen As Long
@@ -429,12 +429,12 @@ Private Sub FindMatchesForAddress(ByVal rawAddress As String, ByRef resultArray(
     Next tryLen
 
     If bestKey = "" Then
-        resultArray(rowIndex, 4) = "Ћs‹ж’¬‘є•s€к’v"
+        resultArray(rowIndex, 4) = "её‚еЊєз”єжќ‘дёЌдёЂи‡ґ"
         Exit Sub
     End If
     Set targetIndices = pSearchIndex(bestKey)
 
-    ' ’¬€ж–јѓ}ѓbѓ`ѓ“ѓO‚МЋАЌsЃF Ћs‹ж’¬‘є€ИЌ~‚М•¶Ћљ—с‚рђШ‚иЏo‚µЃAЊу•вѓRѓЊѓNѓVѓ‡ѓ“‚ЖЏЖЌ‡‚·‚йЃB
+    ' з”єеџџеђЌгѓћгѓѓгѓЃгѓіг‚°гЃ®е®џиЎЊпјљ её‚еЊєз”єжќ‘д»Ґй™ЌгЃ®ж–‡е­—е€—г‚’е€‡г‚Ље‡єгЃ—гЂЃеЂ™иЈњг‚ігѓ¬г‚Їг‚·гѓ§гѓігЃЁз…§еђ€гЃ™г‚‹гЂ‚
     Dim inputSuffixRaw As String
     Dim inputSuffixCore As String
     inputSuffixRaw = Mid(inputNormalized, Len(bestKey) + 1)
@@ -443,8 +443,8 @@ Private Sub FindMatchesForAddress(ByVal rawAddress As String, ByRef resultArray(
     Dim matchedIdx As Long
     matchedIdx = ExecuteTownMatching(targetIndices, inputSuffixRaw, inputSuffixCore, resultArray, rowIndex)
 
-    ' ‹ћ“sЋs‚М’К‚и–јѓtѓHЃ[ѓ‹ѓoѓbѓNЃF ‹ћ“sЋs‚Е•s€к’v‚МЏкЌ‡ЃA’К‚и–ј•\‹L‚рЏњ‹Ћ‚µ‚ДЌДЋЋЌs‚·‚йЃB
-    If matchedIdx = 0 And InStr(1, bestKey, "‹ћ“s•{‹ћ“sЋs") = 1 Then
+    ' дє¬йѓЅеё‚гЃ®йЂљг‚ЉеђЌгѓ•г‚©гѓјгѓ«гѓђгѓѓг‚Їпјљ дє¬йѓЅеё‚гЃ§дёЌдёЂи‡ґгЃ®е ґеђ€гЂЃйЂљг‚ЉеђЌиЎЁиЁг‚’й™¤еЋ»гЃ—гЃ¦е†Ќи©¦иЎЊгЃ™г‚‹гЂ‚
+    If matchedIdx = 0 And InStr(1, bestKey, "дє¬йѓЅеєњдє¬йѓЅеё‚") = 1 Then
         Dim kyotoCleanSuffix As String
         kyotoCleanSuffix = StripKyotoTorina(inputSuffixRaw)
         If kyotoCleanSuffix <> inputSuffixRaw And kyotoCleanSuffix <> "" Then
@@ -454,8 +454,8 @@ Private Sub FindMatchesForAddress(ByVal rawAddress As String, ByRef resultArray(
 End Sub
 
 ' ==============================================================================
-' --- ’¬€ж–јЌЕ’·€к’vЃE”Н€Н”»’иЏ€—ќ---
-' Њу•вѓЊѓRЃ[ѓhЊQ‚©‚зЌЕ’·€к’v‚©‚ВЌЕЌ‚—Dђж“x‚М—X•Ц”ФЌ†‚р“Б’и‚·‚йЃB
+' --- з”єеџџеђЌжњЂй•·дёЂи‡ґгѓ»зЇ„е›Іе€¤е®ље‡¦зђ†---
+' еЂ™иЈњгѓ¬г‚ігѓјгѓ‰зѕ¤гЃ‹г‚‰жњЂй•·дёЂи‡ґгЃ‹гЃ¤жњЂй«е„Єе…€еє¦гЃ®йѓµдѕїз•ЄеЏ·г‚’з‰№е®љгЃ™г‚‹гЂ‚
 Private Function ExecuteTownMatching(ByVal targetIndices As Collection, _
                                      ByVal inputSuffixRaw As String, _
                                      ByVal inputSuffixCore As String, _
@@ -464,7 +464,7 @@ Private Function ExecuteTownMatching(ByVal targetIndices As Collection, _
     Dim idx As Variant
     Dim master As ZipMasterData
 
-    ' Њу•вЉЗ—ќ—pDictionary‚МЏ‰Љъ‰»ЃF —X•Ц”ФЌ†‚І‚Ж‚Мѓ}ѓXѓ^IndexЃA€к’v•¶Ћљђ”ЃA—Dђж“x‚р•ЫЋќ‚·‚йЃB
+    ' еЂ™иЈњз®Ўзђ†з”ЁDictionaryгЃ®е€ќжњџеЊ–пјљ йѓµдѕїз•ЄеЏ·гЃ”гЃЁгЃ®гѓћг‚№г‚їIndexгЂЃдёЂи‡ґж–‡е­—ж•°гЂЃе„Єе…€еє¦г‚’дїќжЊЃгЃ™г‚‹гЂ‚
     Dim candIdxMap As Object: Set candIdxMap = CreateObject("Scripting.Dictionary")
     Dim candLenMap As Object: Set candLenMap = CreateObject("Scripting.Dictionary")
     Dim candPriMap As Object: Set candPriMap = CreateObject("Scripting.Dictionary")
@@ -474,12 +474,12 @@ Private Function ExecuteTownMatching(ByVal targetIndices As Collection, _
     Dim genericFallbackIdx As Long: genericFallbackIdx = -1
     Dim hadRangeRejection As Boolean: hadRangeRejection = False
 
-    ' Њу•вѓRѓЊѓNѓVѓ‡ѓ“‚М‘–ЌёЃF “Ї€кЋs‹ж’¬‘є“а‚М‘Sѓ}ѓXѓ^ѓЊѓRЃ[ѓh‚Й‘О‚µ‚Д’¬–ј‚ЖЉ‡ЊКЏрЊЏ‚рЊџЏШ‚·‚йЃB
+    ' еЂ™иЈњг‚ігѓ¬г‚Їг‚·гѓ§гѓігЃ®иµ°жџ»пјљ еђЊдёЂеё‚еЊєз”єжќ‘е†…гЃ®е…Ёгѓћг‚№г‚їгѓ¬г‚ігѓјгѓ‰гЃ«еЇѕгЃ—гЃ¦з”єеђЌгЃЁж‹¬еј§жќЎд»¶г‚’ж¤њиЁјгЃ™г‚‹гЂ‚
     For Each idx In targetIndices
         master = pMasterDataCache(idx)
 
-        ' ‘г•\ѓЊѓRЃ[ѓh‚М‘Ю”рЃF Ѓu€И‰є‚ЙЊfЌЪ‚Є‚И‚ўЏкЌ‡Ѓv‚НѓtѓHЃ[ѓ‹ѓoѓbѓN—pѓCѓ“ѓfѓbѓNѓX‚Ж‚µ‚Д•ЫЋќ‚·‚йЃB
-        If master.TownRaw = "€И‰є‚ЙЊfЌЪ‚Є‚И‚ўЏкЌ‡" Then
+        ' д»ЈиЎЁгѓ¬г‚ігѓјгѓ‰гЃ®йЂЂйЃїпјљ гЂЊд»Ґдё‹гЃ«жЋІиј‰гЃЊгЃЄгЃ„е ґеђ€гЂЌгЃЇгѓ•г‚©гѓјгѓ«гѓђгѓѓг‚Їз”Ёг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЁгЃ—гЃ¦дїќжЊЃгЃ™г‚‹гЂ‚
+        If master.TownRaw = "д»Ґдё‹гЃ«жЋІиј‰гЃЊгЃЄгЃ„е ґеђ€" Then
             genericFallbackIdx = idx
             GoTo NextMasterRecord
         End If
@@ -490,7 +490,7 @@ Private Function ExecuteTownMatching(ByVal targetIndices As Collection, _
         mTownCore = master.NormalizedTownCore
         If mTown = "" Then GoTo NextMasterRecord
 
-        ' ’¬–ј€к’v”»’иЃF Љ®‘S€к’vЃA‘еЋљЃEЋљ‚рЏњ‚ў‚ЅѓRѓA€к’vЃA‚Ь‚Ѕ‚Н’љ–ЪѓnѓCѓtѓ“•\‹L‚М€к’v‚р”»’и‚·‚йЃB
+        ' з”єеђЌдёЂи‡ґе€¤е®љпјљ е®Ње…ЁдёЂи‡ґгЂЃе¤§е­—гѓ»е­—г‚’й™¤гЃ„гЃџг‚іг‚ўдёЂи‡ґгЂЃгЃѕгЃџгЃЇдёЃз›®гѓЏг‚¤гѓ•гѓіиЎЁиЁгЃ®дёЂи‡ґг‚’е€¤е®љгЃ™г‚‹гЂ‚
         Dim isTownMatched As Boolean: isTownMatched = False
         Dim effectiveMatchLen As Long: effectiveMatchLen = 0
         Dim inputRest As String: inputRest = ""
@@ -503,10 +503,10 @@ Private Function ExecuteTownMatching(ByVal targetIndices As Collection, _
             isTownMatched = True
             effectiveMatchLen = Len(mTownCore)
             inputRest = Mid(inputSuffixCore, Len(mTownCore) + 1)
-        ElseIf (Right(mTown, 2) = "’љ–Ъ" Or Right(mTown, 1) = "’љ") Then
-            ' ’љ–ЪЏИ—ЄѓnѓCѓtѓ“•\‹L‚М”»’иЃF ѓxЃ[ѓX’¬–ј‚Єђ”Ћљ‚М‚Э‚Е‚И‚ўЏкЌ‡‚©‚ВЊг‘±‚ЄѓnѓCѓtѓ““™‚МЋћ‚М‚Э€к’v‚Ж‚·‚йЃB
+        ElseIf (Right(mTown, 2) = "дёЃз›®" Or Right(mTown, 1) = "дёЃ") Then
+            ' дёЃз›®зњЃз•ҐгѓЏг‚¤гѓ•гѓіиЎЁиЁгЃ®е€¤е®љпјљ гѓ™гѓјг‚№з”єеђЌгЃЊж•°е­—гЃ®гЃїгЃ§гЃЄгЃ„е ґеђ€гЃ‹гЃ¤еѕЊз¶љгЃЊгѓЏг‚¤гѓ•гѓіз­‰гЃ®ж™‚гЃ®гЃїдёЂи‡ґгЃЁгЃ™г‚‹гЂ‚
             Dim townBase As String
-            If Right(mTown, 2) = "’љ–Ъ" Then
+            If Right(mTown, 2) = "дёЃз›®" Then
                 townBase = Left(mTown, Len(mTown) - 2)
             Else
                 townBase = Left(mTown, Len(mTown) - 1)
@@ -515,7 +515,7 @@ Private Function ExecuteTownMatching(ByVal targetIndices As Collection, _
                 If InStr(1, inputSuffixCore, townBase) = 1 Then
                     Dim afterTownBase As String
                     afterTownBase = Mid(inputSuffixCore, Len(townBase) + 1)
-                    If Left(afterTownBase, 1) = "Ѓ|" Or afterTownBase = "" Then
+                    If Left(afterTownBase, 1) = "пјЌ" Or afterTownBase = "" Then
                         isTownMatched = True
                         effectiveMatchLen = Len(mTown)
                         inputRest = afterTownBase
@@ -525,25 +525,25 @@ Private Function ExecuteTownMatching(ByVal targetIndices As Collection, _
         End If
 
         If isTownMatched Then
-            ' Љ‡ЊК“аЏрЊЏ‚Ж—Dђж“x‚М•]‰їЃF ЏрЊЏ€к’v‚Н—Dђж“x3ЃA•WЏЂѓЊѓRЃ[ѓh‚Н2ЃAЃu‚»‚М‘јЃv‚Н1‚рђЭ’и‚·‚йЃB
+            ' ж‹¬еј§е†…жќЎд»¶гЃЁе„Єе…€еє¦гЃ®и©•дѕЎпјљ жќЎд»¶дёЂи‡ґгЃЇе„Єе…€еє¦3гЂЃжЁ™жє–гѓ¬г‚ігѓјгѓ‰гЃЇ2гЂЃгЂЊгЃќгЃ®д»–гЂЌгЃЇ1г‚’иЁ­е®љгЃ™г‚‹гЂ‚
             Dim isCandidate As Boolean: isCandidate = True
             Dim recordPriority As Long: recordPriority = 2
 
             Dim hasParen As Boolean
-            hasParen = (InStr(master.TownRaw, "Ѓi") > 0)
+            hasParen = (InStr(master.TownRaw, "пј€") > 0)
 
             If hasParen Then
                 Dim parenContent As String
                 parenContent = ExtractParenContent(master.NormalizedNoPref)
 
-                ' NormalizeAddress‚Й‚ж‚иЃu‚»‚М‘јЃv‚НЃuѓ\ѓm‘јЃvЃAЃu€к‰~Ѓv‚НЃu‚P‰~Ѓv‚Й•ПЉ·‚і‚к‚Д‚ў‚й“_‚рЌl—¶‚·‚йЃB
-                If (InStr(parenContent, "ѓ\ѓm‘ј") > 0 Or InStr(parenContent, "‚»‚М‘ј") > 0) And _
-                   Not (parenContent Like "*[‚O-‚X]*") Then
+                ' NormalizeAddressгЃ«г‚€г‚ЉгЂЊгЃќгЃ®д»–гЂЌгЃЇгЂЊг‚ЅгѓЋд»–гЂЌгЂЃгЂЊдёЂе††гЂЌгЃЇгЂЊпј‘е††гЂЌгЃ«е¤‰жЏ›гЃ•г‚ЊгЃ¦гЃ„г‚‹з‚№г‚’иЂѓж…®гЃ™г‚‹гЂ‚
+                If (InStr(parenContent, "г‚ЅгѓЋд»–") > 0 Or InStr(parenContent, "гЃќгЃ®д»–") > 0) And _
+                   Not (parenContent Like "*[пјђ-пј™]*") Then
                     recordPriority = 1
-                ElseIf InStr(parenContent, "‚P‰~") > 0 Or InStr(master.TownRaw, "€к‰~") > 0 Then
+                ElseIf InStr(parenContent, "пј‘е††") > 0 Or InStr(master.TownRaw, "дёЂе††") > 0 Then
                     recordPriority = 2
-                ElseIf parenContent Like "*[‚O-‚X]*" Then
-                    ' ђ”’l”Н€Н‚М•]‰їЃF “ь—Н‚М”Ф’nЃE’љ–Ъђ”’l‚р’ЉЏo‚µЃAЉ‡ЊК“а‚М”Н€НЏрЊЏ‚ЖЏЖЌ‡‚·‚йЃB
+                ElseIf parenContent Like "*[пјђ-пј™]*" Then
+                    ' ж•°еЂ¤зЇ„е›ІгЃ®и©•дѕЎпјљ е…ҐеЉ›гЃ®з•Єењ°гѓ»дёЃз›®ж•°еЂ¤г‚’жЉЅе‡єгЃ—гЂЃж‹¬еј§е†…гЃ®зЇ„е›ІжќЎд»¶гЃЁз…§еђ€гЃ™г‚‹гЂ‚
                     Dim inputNum As Long
                     Dim inputSubNum As Long
                     inputNum = ExtractNumberFromSuffix(inputRest)
@@ -562,7 +562,7 @@ Private Function ExecuteTownMatching(ByVal targetIndices As Collection, _
                         recordPriority = 2
                     End If
                 Else
-                    ' Љ‡ЊК“аЏ¬ЋљЃEЋ}’n–ј‚М•]‰їЃF ЃuЃi“nЊЛ‘тЃuвЎ‘т‰·ђтЃvЃjЃv“™‚М’n–ј‚Є“ь—НЊг‘±‚ЙЉЬ‚Ь‚к‚й‚©”»’и‚·‚йЃB
+                    ' ж‹¬еј§е†…е°Џе­—гѓ»жћќењ°еђЌгЃ®и©•дѕЎпјљ гЂЊпј€жёЎж€ёжІўгЂЊз­ЌжІўжё©жі‰гЂЌпј‰гЂЌз­‰гЃ®ењ°еђЌгЃЊе…ҐеЉ›еѕЊз¶љгЃ«еђ«гЃѕг‚Њг‚‹гЃ‹е€¤е®љгЃ™г‚‹гЂ‚
                     If Not IsGenericAnnotationParen(parenContent) Then
                         If IsSubTownParenMatch(parenContent, inputRest) Then
                             recordPriority = 3
@@ -573,7 +573,7 @@ Private Function ExecuteTownMatching(ByVal targetIndices As Collection, _
                 End If
             End If
 
-            ' Њу•вЋ«Џ‘‚МЌXђVЃF “Ї€к—X•Ц”ФЌ†‚Е‚а‚ж‚и’·‚ў€к’v’·‚Ь‚Ѕ‚НЌ‚‚ў—Dђж“x‚Є‚ ‚к‚ОЏгЏ‘‚«‚·‚йЃB
+            ' еЂ™иЈњиѕћж›ёгЃ®ж›ґж–°пјљ еђЊдёЂйѓµдѕїз•ЄеЏ·гЃ§г‚‚г‚€г‚Љй•·гЃ„дёЂи‡ґй•·гЃѕгЃџгЃЇй«гЃ„е„Єе…€еє¦гЃЊгЃ‚г‚ЊгЃ°дёЉж›ёгЃЌгЃ™г‚‹гЂ‚
             If isCandidate Then
                 Dim zCode As String
                 zCode = master.ZipCode
@@ -604,10 +604,10 @@ Private Function ExecuteTownMatching(ByVal targetIndices As Collection, _
 NextMasterRecord:
     Next idx
 
-    ' ЌЕЏIЊу•в‚МЌi‚иЌћ‚ЭЃF ЌЕ’·€к’v’·‚©‚ВЌЕЌ‚—Dђж“x‚рЋќ‚ВЊу•в‚М‚Э‚р’ЉЏo‚·‚йЃB
+    ' жњЂзµ‚еЂ™иЈњгЃ®зµћг‚ЉиѕјгЃїпјљ жњЂй•·дёЂи‡ґй•·гЃ‹гЃ¤жњЂй«е„Єе…€еє¦г‚’жЊЃгЃ¤еЂ™иЈњгЃ®гЃїг‚’жЉЅе‡єгЃ™г‚‹гЂ‚
     Dim finalResultZips As Object
     Set finalResultZips = CreateObject("Scripting.Dictionary")
-    Dim matchInfo As String: matchInfo = "•s€к’v"
+    Dim matchInfo As String: matchInfo = "дёЌдёЂи‡ґ"
 
     Dim key As Variant
     If bestMatchTownLen > 0 Then
@@ -621,33 +621,33 @@ NextMasterRecord:
         Next key
     End If
 
-    ' ѓ}ѓbѓ`ѓ“ѓOЏо•с‚МЊ€’иЃF ’¬–ј€к’vЃAЋs‹ж’¬‘є‘г•\ЌМ—pЃA‚Ь‚Ѕ‚Н•s€к’v‚МѓXѓeЃ[ѓ^ѓX‚рђЭ’и‚·‚йЃB
+    ' гѓћгѓѓгѓЃгѓіг‚°жѓ…е ±гЃ®ж±єе®љпјљ з”єеђЌдёЂи‡ґгЂЃеё‚еЊєз”єжќ‘д»ЈиЎЁжЋЎз”ЁгЂЃгЃѕгЃџгЃЇдёЌдёЂи‡ґгЃ®г‚№гѓ†гѓјг‚їг‚№г‚’иЁ­е®љгЃ™г‚‹гЂ‚
     If finalResultZips.Count > 0 Then
         If bestPriorityAtMaxLen = 3 Then
-            matchInfo = "’¬–јЃ{”Н€Н€к’v (" & bestMatchTownLen & "•¶Ћљ)"
+            matchInfo = "з”єеђЌпј‹зЇ„е›ІдёЂи‡ґ (" & bestMatchTownLen & "ж–‡е­—)"
         Else
-            matchInfo = "’¬–јЌЕ’·€к’v (" & bestMatchTownLen & "•¶Ћљ)"
+            matchInfo = "з”єеђЌжњЂй•·дёЂи‡ґ (" & bestMatchTownLen & "ж–‡е­—)"
         End If
         ExecuteTownMatching = 1
     ElseIf genericFallbackIdx <> -1 Then
         finalResultZips(pMasterDataCache(genericFallbackIdx).ZipCode) = genericFallbackIdx
         If hadRangeRejection Then
-            matchInfo = "Ћs‹ж’¬‘є‘г•\ЌМ—p(”Н€НЉO)"
+            matchInfo = "её‚еЊєз”єжќ‘д»ЈиЎЁжЋЎз”Ё(зЇ„е›Іе¤–)"
         Else
-            matchInfo = "Ћs‹ж’¬‘є‘г•\ЌМ—p"
+            matchInfo = "её‚еЊєз”єжќ‘д»ЈиЎЁжЋЎз”Ё"
         End If
         ExecuteTownMatching = 0
     Else
         If hadRangeRejection Then
-            resultArray(rowIndex, 4) = "”Н€НЉO‚ЕЏњЉO"
+            resultArray(rowIndex, 4) = "зЇ„е›Іе¤–гЃ§й™¤е¤–"
         Else
-            resultArray(rowIndex, 4) = "•s€к’v"
+            resultArray(rowIndex, 4) = "дёЌдёЂи‡ґ"
         End If
         ExecuteTownMatching = 0
         Exit Function
     End If
 
-    ' Њ‹‰К”z—с‚Ц‚МЉi”[ЃF •Ўђ”Њу•в‚Є‚ ‚йЏкЌ‡‚НѓJѓ“ѓ}‹жђШ‚и‚Е—X•Ц”ФЌ†‚рAЊ‹‚µЃA‘г•\’¬–ј‚рѓZѓbѓg‚·‚йЃB
+    ' зµђжћњй…Ќе€—гЃёгЃ®ж јзґЌпјљ и¤‡ж•°еЂ™иЈњгЃЊгЃ‚г‚‹е ґеђ€гЃЇг‚«гѓігѓћеЊєе€‡г‚ЉгЃ§йѓµдѕїз•ЄеЏ·г‚’йЂЈзµђгЃ—гЂЃд»ЈиЎЁз”єеђЌг‚’г‚»гѓѓгѓ€гЃ™г‚‹гЂ‚
     Dim zipRes As String
     Dim fullAddressRes As String
     Dim townRes As String
@@ -665,9 +665,9 @@ NextMasterRecord:
         If townRes = "" Then
             Dim resultTownRaw As String
             resultTownRaw = master.TownRaw
-            If resultTownRaw = "€И‰є‚ЙЊfЌЪ‚Є‚И‚ўЏкЌ‡" Then resultTownRaw = ""
-            If InStr(resultTownRaw, "Ѓi") > 0 Then
-                resultTownRaw = Left(resultTownRaw, InStr(resultTownRaw, "Ѓi") - 1)
+            If resultTownRaw = "д»Ґдё‹гЃ«жЋІиј‰гЃЊгЃЄгЃ„е ґеђ€" Then resultTownRaw = ""
+            If InStr(resultTownRaw, "пј€") > 0 Then
+                resultTownRaw = Left(resultTownRaw, InStr(resultTownRaw, "пј€") - 1)
             End If
             townRes = resultTownRaw
         End If
@@ -682,43 +682,43 @@ NextMasterRecord:
 End Function
 
 ' ==============================================================================
-' --- ЏZЏЉђі‹K‰»Џ€—ќ ---
-' ‘SЉp‰»ЃAѓJѓi“ќ€кЃA€Щ‘МЋљ“ќ€кЃAѓnѓCѓtѓ““ќ€кЃA‚Ё‚ж‚С•ЎЌ‡Љїђ”Ћљ•ПЉ·‚рЌs‚¤ЃB
+' --- дЅЏж‰Ђж­Ји¦ЏеЊ–е‡¦зђ† ---
+' е…Ёи§’еЊ–гЂЃг‚«гѓЉзµ±дёЂгЂЃз•°дЅ“е­—зµ±дёЂгЂЃгѓЏг‚¤гѓ•гѓізµ±дёЂгЂЃгЃЉг‚€гЃіи¤‡еђ€жјўж•°е­—е¤‰жЏ›г‚’иЎЊгЃ†гЂ‚
 Private Function NormalizeAddress(ByVal inputAddress As String) As String
     Dim result As String
     result = inputAddress
     If result = "" Then Exit Function
 
-    ' ‘SЉp‰»‚ЖѓJѓ^ѓJѓi‰»ЃF ”јЉp•¶Ћљ‚р‘SЉp‚Ц‘µ‚¦ЃA‚Р‚з‚Є‚И‚рѓJѓ^ѓJѓi‚Ц•ПЉ·‚·‚йЃB
+    ' е…Ёи§’еЊ–гЃЁг‚«г‚їг‚«гѓЉеЊ–пјљ еЌЉи§’ж–‡е­—г‚’е…Ёи§’гЃёжЏѓгЃ€гЂЃгЃІг‚‰гЃЊгЃЄг‚’г‚«г‚їг‚«гѓЉгЃёе¤‰жЏ›гЃ™г‚‹гЂ‚
     result = StrConv(result, vbWide)
     result = StrConv(result, vbKatakana)
 
-    ' •\‹L‚д‚к•¶Ћљ‚М“ќ€кЃF Џ¬Џ‘‚«ѓJѓi‚вЏ•ЋЊ‚М‚д‚з‚¬‚р“Ї€к•¶Ћљ‚Ц’uЉ·‚·‚йЃB
-    result = Replace(result, "ѓ–", "ѓP")
-    result = Replace(result, "ѓ•", "ѓJ")
-    result = Replace(result, "‚Є", "ѓP")
-    result = Replace(result, "ѓK", "ѓP")
-    result = Replace(result, "”V", "ѓm")
-    result = Replace(result, "‚М", "ѓm")
-    result = Replace(result, "ѓbѓc", "ѓc")
-    result = Replace(result, "ѓb", "ѓc")
+    ' иЎЁиЁг‚†г‚Њж–‡е­—гЃ®зµ±дёЂпјљ е°Џж›ёгЃЌг‚«гѓЉг‚„еЉ©и©ћгЃ®г‚†г‚‰гЃЋг‚’еђЊдёЂж–‡е­—гЃёзЅ®жЏ›гЃ™г‚‹гЂ‚
+    result = Replace(result, "гѓ¶", "г‚±")
+    result = Replace(result, "гѓµ", "г‚«")
+    result = Replace(result, "гЃЊ", "г‚±")
+    result = Replace(result, "г‚¬", "г‚±")
+    result = Replace(result, "д№‹", "гѓЋ")
+    result = Replace(result, "гЃ®", "гѓЋ")
+    result = Replace(result, "гѓѓгѓ„", "гѓ„")
+    result = Replace(result, "гѓѓ", "гѓ„")
 
-    ' €Щ‘МЋљ‚М“ќ€кЃF ‹ЊЋљ‘М‚в€Щ‘МЋљ‚р•WЏЂ“I‚ИђVЋљ‘М‚Ц’uЉ·‚·‚йЃB
-    result = Replace(result, "ћЉ", "Џр")
-    result = Replace(result, "џN", "Ќч")
-    result = Replace(result, "аV", "‘т")
+    ' з•°дЅ“е­—гЃ®зµ±дёЂпјљ ж—§е­—дЅ“г‚„з•°дЅ“е­—г‚’жЁ™жє–зљ„гЃЄж–°е­—дЅ“гЃёзЅ®жЏ›гЃ™г‚‹гЂ‚
+    result = Replace(result, "жўќ", "жќЎ")
+    result = Replace(result, "ж«»", "жЎњ")
+    result = Replace(result, "жѕ¤", "жІў")
 
-    ' ‹жђШ‚и‹LЌ†‚М“ќ€кЃF ЉeЋнѓnѓCѓtѓ“‚вѓ_ѓbѓVѓ…—Ю‚р‘SЉpѓnѓCѓtѓ“ЃuЃ|Ѓv‚Ц“ќ€к‚·‚йЃB
-    result = Replace(result, "-", "Ѓ|")
-    result = Replace(result, "Ѓ[", "Ѓ|")
-    result = Replace(result, "Ѓ\", "Ѓ|")
-    result = Replace(result, "Ѓ]", "Ѓ|")
-    result = Replace(result, "°", "Ѓ|")
+    ' еЊєе€‡г‚ЉиЁеЏ·гЃ®зµ±дёЂпјљ еђ„зЁ®гѓЏг‚¤гѓ•гѓіг‚„гѓЂгѓѓг‚·гѓҐйЎћг‚’е…Ёи§’гѓЏг‚¤гѓ•гѓігЂЊпјЌгЂЌгЃёзµ±дёЂгЃ™г‚‹гЂ‚
+    result = Replace(result, "-", "пјЌ")
+    result = Replace(result, "гѓј", "пјЌ")
+    result = Replace(result, "вЂ•", "пјЌ")
+    result = Replace(result, "вЂђ", "пјЌ")
+    result = Replace(result, "пЅ°", "пјЌ")
 
-    ' Љїђ”Ћљ‚М•ПЉ·ЃF Џ\ЃE•S‚рЉЬ‚ЮЉїђ”Ћљ—с‚р‘SЉpѓAѓ‰ѓrѓAђ”Ћљ‚Ц•ПЉ·‚·‚йЃB
+    ' жјўж•°е­—гЃ®е¤‰жЏ›пјљ еЌЃгѓ»з™ѕг‚’еђ«г‚Ђжјўж•°е­—е€—г‚’е…Ёи§’г‚ўгѓ©гѓ“г‚ўж•°е­—гЃёе¤‰жЏ›гЃ™г‚‹гЂ‚
     result = ConvertKanjiNumerals(result)
 
-    ' ‹у”’‚МЏњ‹ЋЃF ‘SЉp‚Ё‚ж‚С”јЉp‚МѓXѓyЃ[ѓX‚рЌнЏњ‚·‚йЃB
+    ' з©єз™ЅгЃ®й™¤еЋ»пјљ е…Ёи§’гЃЉг‚€гЃіеЌЉи§’гЃ®г‚№гѓљгѓјг‚№г‚’е‰Љй™¤гЃ™г‚‹гЂ‚
     result = Replace(result, " ", "")
     result = Replace(result, " ", "")
 
@@ -726,8 +726,8 @@ Private Function NormalizeAddress(ByVal inputAddress As String) As String
 End Function
 
 ' ==============================================================================
-' --- Љїђ”ЋљѓgЃ[ѓNѓ“’ЉЏoЏ€—ќ ---
-' •¶Ћљ—с“а‚МA‘±‚·‚йЉїђ”Ћљ•”•Є‚рђШ‚иЏo‚µ‚ДЋZ—pђ”Ћљ•ПЉ·‚Ц“n‚·ЃB
+' --- жјўж•°е­—гѓ€гѓјг‚ЇгѓіжЉЅе‡єе‡¦зђ† ---
+' ж–‡е­—е€—е†…гЃ®йЂЈз¶љгЃ™г‚‹жјўж•°е­—йѓЁе€†г‚’е€‡г‚Ље‡єгЃ—гЃ¦з®—з”Ёж•°е­—е¤‰жЏ›гЃёжёЎгЃ™гЂ‚
 Private Function ConvertKanjiNumerals(ByVal src As String) As String
     Dim i As Long, n As Long
     Dim ch As String
@@ -737,7 +737,7 @@ Private Function ConvertKanjiNumerals(ByVal src As String) As String
     n = Len(src)
     For i = 1 To n
         ch = Mid(src, i, 1)
-        If InStr("ЃZ€к“сЋOЋlЊЬZЋµ”Є‹гЏ\•S", ch) > 0 Then
+        If InStr("гЂ‡дёЂдєЊдё‰е››дє”е…­дёѓе…«д№ќеЌЃз™ѕ", ch) > 0 Then
             kanjiBuf = kanjiBuf & ch
         Else
             If kanjiBuf <> "" Then
@@ -755,28 +755,28 @@ Private Function ConvertKanjiNumerals(ByVal src As String) As String
     ConvertKanjiNumerals = outStr
 End Function
 
-' --- •ЎЌ‡Љїђ”Ћљ‚М•]‰їЏ€—ќ ---
-' ЃuЏ\ЃvЃu•SЃv‚рЉЬ‚ЮЉїђ”ЋљѓgЃ[ѓNѓ“‚рђ”’lЊvЋZ‚µЃA‘SЉpђ”Ћљ•¶Ћљ—с‚Ц•ПЉ·‚·‚йЃB
+' --- и¤‡еђ€жјўж•°е­—гЃ®и©•дѕЎе‡¦зђ† ---
+' гЂЊеЌЃгЂЌгЂЊз™ѕгЂЌг‚’еђ«г‚Ђжјўж•°е­—гѓ€гѓјг‚Їгѓіг‚’ж•°еЂ¤иЁ€з®—гЃ—гЂЃе…Ёи§’ж•°е­—ж–‡е­—е€—гЃёе¤‰жЏ›гЃ™г‚‹гЂ‚
 Private Function ParseSingleKanjiNumber(ByVal kStr As String) As String
-    ' ’PЏѓ’uЉ·‚М•ЄЉтЃF ЃuЏ\ЃvЃu•SЃv‚рЉЬ‚Ь‚И‚ўЏкЌ‡‚НЉeЊ…‚р’јђЪ‘SЉpђ”Ћљ‚Ц’uЉ·‚·‚йЃB
-    If InStr(kStr, "Џ\") = 0 And InStr(kStr, "•S") = 0 Then
+    ' еЌзґ”зЅ®жЏ›гЃ®е€†еІђпјљ гЂЊеЌЃгЂЌгЂЊз™ѕгЂЌг‚’еђ«гЃѕгЃЄгЃ„е ґеђ€гЃЇеђ„жЎЃг‚’з›ґжЋҐе…Ёи§’ж•°е­—гЃёзЅ®жЏ›гЃ™г‚‹гЂ‚
+    If InStr(kStr, "еЌЃ") = 0 And InStr(kStr, "з™ѕ") = 0 Then
         Dim res As String
         res = kStr
-        res = Replace(res, "ЃZ", "‚O")
-        res = Replace(res, "€к", "‚P")
-        res = Replace(res, "“с", "‚Q")
-        res = Replace(res, "ЋO", "‚R")
-        res = Replace(res, "Ћl", "‚S")
-        res = Replace(res, "ЊЬ", "‚T")
-        res = Replace(res, "Z", "‚U")
-        res = Replace(res, "Ћµ", "‚V")
-        res = Replace(res, "”Є", "‚W")
-        res = Replace(res, "‹г", "‚X")
+        res = Replace(res, "гЂ‡", "пјђ")
+        res = Replace(res, "дёЂ", "пј‘")
+        res = Replace(res, "дєЊ", "пј’")
+        res = Replace(res, "дё‰", "пј“")
+        res = Replace(res, "е››", "пј”")
+        res = Replace(res, "дє”", "пј•")
+        res = Replace(res, "е…­", "пј–")
+        res = Replace(res, "дёѓ", "пј—")
+        res = Replace(res, "е…«", "пј")
+        res = Replace(res, "д№ќ", "пј™")
         ParseSingleKanjiNumber = res
         Exit Function
     End If
 
-    ' €КЋж‚иЊvЋZ‚МЋАЌsЃF ЃuЏ\“сЃv‚р12ЃAЃu“сЏ\ЋlЃv‚р24ЃAЃu•S“сЏ\ЋOЃv‚р123‚Ж‚µ‚ДЋZЏo‚·‚йЃB
+    ' дЅЌеЏ–г‚ЉиЁ€з®—гЃ®е®џиЎЊпјљ гЂЊеЌЃдєЊгЂЌг‚’12гЂЃгЂЊдєЊеЌЃе››гЂЌг‚’24гЂЃгЂЊз™ѕдєЊеЌЃдё‰гЂЌг‚’123гЃЁгЃ—гЃ¦з®—е‡єгЃ™г‚‹гЂ‚
     Dim total As Long: total = 0
     Dim currentDigit As Long: currentDigit = 0
     Dim idx As Long
@@ -785,21 +785,21 @@ Private Function ParseSingleKanjiNumber(ByVal kStr As String) As String
     For idx = 1 To Len(kStr)
         c = Mid(kStr, idx, 1)
         Select Case c
-            Case "€к": currentDigit = 1
-            Case "“с": currentDigit = 2
-            Case "ЋO": currentDigit = 3
-            Case "Ћl": currentDigit = 4
-            Case "ЊЬ": currentDigit = 5
-            Case "Z": currentDigit = 6
-            Case "Ћµ": currentDigit = 7
-            Case "”Є": currentDigit = 8
-            Case "‹г": currentDigit = 9
-            Case "ЃZ": currentDigit = 0
-            Case "•S"
+            Case "дёЂ": currentDigit = 1
+            Case "дєЊ": currentDigit = 2
+            Case "дё‰": currentDigit = 3
+            Case "е››": currentDigit = 4
+            Case "дє”": currentDigit = 5
+            Case "е…­": currentDigit = 6
+            Case "дёѓ": currentDigit = 7
+            Case "е…«": currentDigit = 8
+            Case "д№ќ": currentDigit = 9
+            Case "гЂ‡": currentDigit = 0
+            Case "з™ѕ"
                 If currentDigit = 0 Then currentDigit = 1
                 total = total + currentDigit * 100
                 currentDigit = 0
-            Case "Џ\"
+            Case "еЌЃ"
                 If currentDigit = 0 Then currentDigit = 1
                 total = total + currentDigit * 10
                 currentDigit = 0
@@ -811,28 +811,28 @@ Private Function ParseSingleKanjiNumber(ByVal kStr As String) As String
 End Function
 
 ' ==============================================================================
-' --- ђж“Є‘еЋљЃEЋљ‚МЏњ‹ЋЏ€—ќ ---
-' ’¬–јђж“Є‚Й‚ ‚йЃu‘еЋљЃvЃuЏ¬ЋљЃvЃuЋљЃv‚М‚Э‚рЋж‚иЏњ‚­ЃB
+' --- е…€й ­е¤§е­—гѓ»е­—гЃ®й™¤еЋ»е‡¦зђ† ---
+' з”єеђЌе…€й ­гЃ«гЃ‚г‚‹гЂЊе¤§е­—гЂЌгЂЊе°Џе­—гЂЌгЂЊе­—гЂЌгЃ®гЃїг‚’еЏ–г‚Љй™¤гЃЏгЂ‚
 Private Function StripLeadingOazaAza(ByVal townStr As String) As String
     Dim s As String
     s = townStr
-    If Left(s, 2) = "‘еЋљ" And Len(s) > 2 Then
+    If Left(s, 2) = "е¤§е­—" And Len(s) > 2 Then
         s = Mid(s, 3)
-    ElseIf Left(s, 2) = "Џ¬Ћљ" And Len(s) > 2 Then
+    ElseIf Left(s, 2) = "е°Џе­—" And Len(s) > 2 Then
         s = Mid(s, 3)
-    ElseIf Left(s, 1) = "Ћљ" And Len(s) > 1 Then
+    ElseIf Left(s, 1) = "е­—" And Len(s) > 1 Then
         s = Mid(s, 2)
     End If
     StripLeadingOazaAza = s
 End Function
 
 ' ==============================================================================
-' --- ЊS–јЏњ‹ЋЏ€—ќ ---
-' ’¬‘є‚МЋs‹ж’¬‘є–ј‚©‚зЃuЃZЃZЊSЃv‚рЏњ‚ў‚Ѕ•¶Ћљ—с‚р•Ф‚·ЃiЃuЊSЋRЋsЃv“™‚МЋs–ј‚Н€ЫЋќ‚·‚йЃjЃB
+' --- йѓЎеђЌй™¤еЋ»е‡¦зђ† ---
+' з”єжќ‘гЃ®её‚еЊєз”єжќ‘еђЌгЃ‹г‚‰гЂЊгЂ‡гЂ‡йѓЎгЂЌг‚’й™¤гЃ„гЃџж–‡е­—е€—г‚’иї”гЃ™пј€гЂЊйѓЎе±±её‚гЂЌз­‰гЃ®её‚еђЌгЃЇз¶­жЊЃгЃ™г‚‹пј‰гЂ‚
 Private Function RemoveGunFromCity(ByVal normalizedCity As String) As String
     Dim gunPos As Long
-    gunPos = InStr(normalizedCity, "ЊS")
-    If gunPos > 0 And Right(normalizedCity, 1) <> "Ћs" And gunPos < Len(normalizedCity) Then
+    gunPos = InStr(normalizedCity, "йѓЎ")
+    If gunPos > 0 And Right(normalizedCity, 1) <> "её‚" And gunPos < Len(normalizedCity) Then
         RemoveGunFromCity = Mid(normalizedCity, gunPos + 1)
     Else
         RemoveGunFromCity = normalizedCity
@@ -840,15 +840,15 @@ Private Function RemoveGunFromCity(ByVal normalizedCity As String) As String
 End Function
 
 ' ==============================================================================
-' --- ‹ћ“sЋs’К‚и–јЏњ‹ЋЏ€—ќ ---
-' ЃuЏгѓ‹ЃvЃu‰єѓ‹ЃvЃu“Њ“ьЃvЃuђј“ьЃv‚Ь‚Е‚М’К‚и–ј‹LЏq‚рђж“Є‚©‚зЏњ‹Ћ‚·‚йЃB
+' --- дє¬йѓЅеё‚йЂљг‚ЉеђЌй™¤еЋ»е‡¦зђ† ---
+' гЂЊдёЉгѓ«гЂЌгЂЊдё‹гѓ«гЂЌгЂЊжќ±е…ҐгЂЌгЂЊиҐїе…ҐгЂЌгЃѕгЃ§гЃ®йЂљг‚ЉеђЌиЁиї°г‚’е…€й ­гЃ‹г‚‰й™¤еЋ»гЃ™г‚‹гЂ‚
 Private Function StripKyotoTorina(ByVal suffixStr As String) As String
     Dim markers As Variant
     Dim m As Variant
     Dim pos As Long
     Dim maxEndPos As Long: maxEndPos = 0
 
-    markers = Array("Џгѓ‹", "‰єѓ‹", "“Њ“ьѓ‹", "ђј“ьѓ‹", "“Њ“ь", "ђј“ь")
+    markers = Array("дёЉгѓ«", "дё‹гѓ«", "жќ±е…Ґгѓ«", "иҐїе…Ґгѓ«", "жќ±е…Ґ", "иҐїе…Ґ")
     For Each m In markers
         pos = InStr(suffixStr, CStr(m))
         If pos > 0 Then
@@ -866,8 +866,8 @@ Private Function StripKyotoTorina(ByVal suffixStr As String) As String
 End Function
 
 ' ==============================================================================
-' --- ‘SЉpђ”Ћљ‚М‚Э‚ЕЌ\ђ¬‚і‚к‚Д‚ў‚й‚©‚М”»’и---
-' ’¬–јѓxЃ[ѓX•”‚Єђ”Ћљ‚М‚ЭЃiЃuЋl’љ–ЪЃv‚МЃuЋlЃv“™Ѓj‚©‚р”»’и‚·‚йЃB
+' --- е…Ёи§’ж•°е­—гЃ®гЃїгЃ§ж§‹ж€ђгЃ•г‚ЊгЃ¦гЃ„г‚‹гЃ‹гЃ®е€¤е®љ---
+' з”єеђЌгѓ™гѓјг‚№йѓЁгЃЊж•°е­—гЃ®гЃїпј€гЂЊе››дёЃз›®гЂЌгЃ®гЂЊе››гЂЌз­‰пј‰гЃ‹г‚’е€¤е®љгЃ™г‚‹гЂ‚
 Private Function IsAllFullWidthDigits(ByVal strVal As String) As Boolean
     Dim i As Long
     If strVal = "" Then
@@ -875,7 +875,7 @@ Private Function IsAllFullWidthDigits(ByVal strVal As String) As Boolean
         Exit Function
     End If
     For i = 1 To Len(strVal)
-        If Not (Mid(strVal, i, 1) Like "[‚O-‚X]") Then
+        If Not (Mid(strVal, i, 1) Like "[пјђ-пј™]") Then
             IsAllFullWidthDigits = False
             Exit Function
         End If
@@ -884,22 +884,22 @@ Private Function IsAllFullWidthDigits(ByVal strVal As String) As Boolean
 End Function
 
 ' ==============================================================================
-' --- ”Д—p’ЌЋЯЉ‡ЊК‚М”»’и ---
-' Љ‡ЊК“а‚ЄЊЕ—L‚МЏ¬Ћљ’n–ј‚Е‚Н‚И‚­Ѓu€к‰~ЃvЃu‘S€жЃvЃuЏњѓNЃv“™‚М€к”К’Ќ‹L‚©‚р”»’и‚·‚йЃB
+' --- ж±Ћз”ЁжіЁй‡€ж‹¬еј§гЃ®е€¤е®љ ---
+' ж‹¬еј§е†…гЃЊе›єжњ‰гЃ®е°Џе­—ењ°еђЌгЃ§гЃЇгЃЄгЃЏгЂЊдёЂе††гЂЌгЂЊе…ЁеџџгЂЌгЂЊй™¤г‚ЇгЂЌз­‰гЃ®дёЂи€¬жіЁиЁгЃ‹г‚’е€¤е®љгЃ™г‚‹гЂ‚
 Private Function IsGenericAnnotationParen(ByVal parenContent As String) As Boolean
     If parenContent = "" Then
         IsGenericAnnotationParen = True
-    ElseIf InStr(parenContent, "ѓ\ѓm‘ј") > 0 Or _
-           InStr(parenContent, "‚»‚М‘ј") > 0 Or _
-           InStr(parenContent, "‚P‰~") > 0 Or _
-           InStr(parenContent, "€к‰~") > 0 Or _
-           InStr(parenContent, "‘S€ж") > 0 Or _
-           InStr(parenContent, "ЏњѓN") > 0 Or _
-           InStr(parenContent, "Џњ‚­") > 0 Or _
-           InStr(parenContent, "€ИЉO") > 0 Or _
-           InStr(parenContent, "ѓ}ѓ^ѓKѓ‹") > 0 Or _
-           InStr(parenContent, "’nЉK") > 0 Or _
-           InStr(parenContent, "ЉK‘w") > 0 Then
+    ElseIf InStr(parenContent, "г‚ЅгѓЋд»–") > 0 Or _
+           InStr(parenContent, "гЃќгЃ®д»–") > 0 Or _
+           InStr(parenContent, "пј‘е††") > 0 Or _
+           InStr(parenContent, "дёЂе††") > 0 Or _
+           InStr(parenContent, "е…Ёеџџ") > 0 Or _
+           InStr(parenContent, "й™¤г‚Ї") > 0 Or _
+           InStr(parenContent, "й™¤гЃЏ") > 0 Or _
+           InStr(parenContent, "д»Ґе¤–") > 0 Or _
+           InStr(parenContent, "гѓћг‚їг‚¬гѓ«") > 0 Or _
+           InStr(parenContent, "ењ°йљЋ") > 0 Or _
+           InStr(parenContent, "йљЋе±¤") > 0 Then
         IsGenericAnnotationParen = True
     Else
         IsGenericAnnotationParen = False
@@ -907,8 +907,8 @@ Private Function IsGenericAnnotationParen(ByVal parenContent As String) As Boole
 End Function
 
 ' ==============================================================================
-' --- Љ‡ЊК“аЏ¬ЋљЃEЋ}’n–ј‚М€к’v”»’и ---
-' зкЉ‡ЊКЃuЃv‚рЏњ‹Ћ‚µ‚Ѕ‘S‘М€к’v‚Ь‚Ѕ‚Н•ЄЉ„ѓLЃ[ѓЏЃ[ѓh‚М•”•Є€к’v‚р”»’и‚·‚йЃB
+' --- ж‹¬еј§е†…е°Џе­—гѓ»жћќењ°еђЌгЃ®дёЂи‡ґе€¤е®љ ---
+' й‰¤ж‹¬еј§гЂЊгЂЌг‚’й™¤еЋ»гЃ—гЃџе…ЁдЅ“дёЂи‡ґгЃѕгЃџгЃЇе€†е‰Іг‚­гѓјгѓЇгѓјгѓ‰гЃ®йѓЁе€†дёЂи‡ґг‚’е€¤е®љгЃ™г‚‹гЂ‚
 Private Function IsSubTownParenMatch(ByVal parenContent As String, ByVal inputRest As String) As Boolean
     Dim cleanRest As String
     Dim cleanParen As String
@@ -919,28 +919,28 @@ Private Function IsSubTownParenMatch(ByVal parenContent As String, ByVal inputRe
 
     IsSubTownParenMatch = False
     cleanRest = inputRest
-    cleanRest = Replace(cleanRest, "Ѓi", "")
-    cleanRest = Replace(cleanRest, "Ѓj", "")
+    cleanRest = Replace(cleanRest, "пј€", "")
+    cleanRest = Replace(cleanRest, "пј‰", "")
     cleanRest = Replace(cleanRest, "(", "")
     cleanRest = Replace(cleanRest, ")", "")
-    cleanRest = Replace(cleanRest, "Ѓu", "")
-    cleanRest = Replace(cleanRest, "Ѓv", "")
+    cleanRest = Replace(cleanRest, "гЂЊ", "")
+    cleanRest = Replace(cleanRest, "гЂЌ", "")
     cleanRest = StripLeadingOazaAza(cleanRest)
     If cleanRest = "" Then Exit Function
 
-    ' 1. зкЉ‡ЊКЃuЃv‚рЏњ‚ў‚ЅAЊ‹•¶Ћљ—с‚Е‚М€к’v”»’иЃi—бЃFЃu“nЊЛ‘тЃuвЎ‘т‰·ђтЃvЃvЃЁЃu“nЊЛ‘твЎ‘т‰·ђтЃvЃj
-    cleanParen = Replace(Replace(parenContent, "Ѓu", ""), "Ѓv", "")
+    ' 1. й‰¤ж‹¬еј§гЂЊгЂЌг‚’й™¤гЃ„гЃџйЂЈзµђж–‡е­—е€—гЃ§гЃ®дёЂи‡ґе€¤е®љпј€дѕ‹пјљгЂЊжёЎж€ёжІўгЂЊз­ЌжІўжё©жі‰гЂЌгЂЌв†’гЂЊжёЎж€ёжІўз­ЌжІўжё©жі‰гЂЌпј‰
+    cleanParen = Replace(Replace(parenContent, "гЂЊ", ""), "гЂЌ", "")
     cleanParen = StripLeadingOazaAza(cleanParen)
     If cleanParen <> "" And InStr(1, cleanRest, cleanParen) > 0 Then
         IsSubTownParenMatch = True
         Exit Function
     End If
 
-    ' 2. ЃuЃv‚в“З“_‚Е•ЄЉ„‚µ‚ЅЊВ•К’n–јѓLЃ[ѓЏЃ[ѓh‚Е‚М€к’v”»’иЃi—бЃFЃu“nЊЛ‘тЃv‚Ь‚Ѕ‚НЃuвЎ‘т‰·ђтЃvЃj
-    tokenStr = Replace(parenContent, "Ѓu", "ЃA")
-    tokenStr = Replace(tokenStr, "Ѓv", "ЃA")
-    tokenStr = Replace(tokenStr, "ЃE", "ЃA")
-    tokens = Split(tokenStr, "ЃA")
+    ' 2. гЂЊгЂЌг‚„иЄ­з‚№гЃ§е€†е‰ІгЃ—гЃџеЂ‹е€Ґењ°еђЌг‚­гѓјгѓЇгѓјгѓ‰гЃ§гЃ®дёЂи‡ґе€¤е®љпј€дѕ‹пјљгЂЊжёЎж€ёжІўгЂЌгЃѕгЃџгЃЇгЂЊз­ЌжІўжё©жі‰гЂЌпј‰
+    tokenStr = Replace(parenContent, "гЂЊ", "гЂЃ")
+    tokenStr = Replace(tokenStr, "гЂЌ", "гЂЃ")
+    tokenStr = Replace(tokenStr, "гѓ»", "гЂЃ")
+    tokens = Split(tokenStr, "гЂЃ")
 
     For Each tk In tokens
         cleanTk = StripLeadingOazaAza(Trim(CStr(tk)))
@@ -954,12 +954,12 @@ Private Function IsSubTownParenMatch(ByVal parenContent As String, ByVal inputRe
 End Function
 
 ' ==============================================================================
-' --- ’¬€ж–ј‚МЉ‡ЊКЏњ‹ЋЏ€—ќ ---
-' ’¬€ж–ј‚ЙЉJ‚«Љ‡ЊК‚ЄЉЬ‚Ь‚к‚йЏкЌ‡ЃAЉ‡ЊК‚МЋи‘O‚Ь‚Е‚М•¶Ћљ—с‚р•Ф‚·ЃB
+' --- з”єеџџеђЌгЃ®ж‹¬еј§й™¤еЋ»е‡¦зђ† ---
+' з”єеџџеђЌгЃ«й–‹гЃЌж‹¬еј§гЃЊеђ«гЃѕг‚Њг‚‹е ґеђ€гЂЃж‹¬еј§гЃ®ж‰‹е‰ЌгЃѕгЃ§гЃ®ж–‡е­—е€—г‚’иї”гЃ™гЂ‚
 Private Function RemoveRangeSuffixTownName(ByVal targetTownName As String) As String
     Dim openPos As Long
 
-    openPos = InStr(targetTownName, "Ѓi")
+    openPos = InStr(targetTownName, "пј€")
     If openPos = 0 Then openPos = InStr(targetTownName, "(")
 
     If openPos > 0 Then
@@ -970,21 +970,21 @@ Private Function RemoveRangeSuffixTownName(ByVal targetTownName As String) As St
 End Function
 
 ' ==============================================================================
-' --- “s“№•{Њ§ЉJЋn”»’и ---
-' “ь—НЏZЏЉ‚Є47“s“№•{Њ§‚М‚ў‚ё‚к‚©‚©‚зЋn‚Ь‚Б‚Д‚ў‚й‚©‚р”»’и‚·‚йЃB
+' --- йѓЅйЃ“еєњзњЊй–‹е§‹е€¤е®љ ---
+' е…ҐеЉ›дЅЏж‰ЂгЃЊ47йѓЅйЃ“еєњзњЊгЃ®гЃ„гЃљг‚ЊгЃ‹гЃ‹г‚‰е§‹гЃѕгЃЈгЃ¦гЃ„г‚‹гЃ‹г‚’е€¤е®љгЃ™г‚‹гЂ‚
 Private Function IsAddressPrefectureStart(ByVal addressString As String) As Boolean
     Static prefList As Variant
     Dim cleanAddr As String
     cleanAddr = Trim(addressString)
 
     If IsEmpty(prefList) Then
-        prefList = Array("–kЉC“№", "ђВђXЊ§", "ЉвЋиЊ§", "‹{ЏйЊ§", "ЏH“cЊ§", "ЋRЊ`Њ§", "•џ“‡Њ§", _
-                         "€пЏйЊ§", "“И–ШЊ§", "ЊQ”nЊ§", "Ќй‹КЊ§", "ђз—tЊ§", "“Њ‹ћ“s", "ђ_“ЮђмЊ§", _
-                         "ђVЉѓЊ§", "•xЋRЊ§", "ђОђмЊ§", "•џ€дЊ§", "ЋR—њЊ§", "’·–мЊ§", "Љт•ЊЊ§", _
-                         "ђГ‰ЄЊ§", "€¤’mЊ§", "ЋOЏdЊ§", "Ћ ‰кЊ§", "‹ћ“s•{", "‘еЌг•{", "•єЊЙЊ§", _
-                         "“Ю—ЗЊ§", "a‰МЋRЊ§", "’№ЋжЊ§", "“‡ЌЄЊ§", "‰ЄЋRЊ§", "ЌL“‡Њ§", "ЋRЊыЊ§", _
-                         "“ї“‡Њ§", "ЌЃђмЊ§", "€¤•QЊ§", "Ќ‚’mЊ§", "•џ‰ЄЊ§", "ЌІ‰кЊ§", "’·ЌиЊ§", _
-                         "ЊF–{Њ§", "‘е•ЄЊ§", "‹{ЌиЊ§", "Ћ­Ћ™“‡Њ§", "‰«“кЊ§")
+        prefList = Array("еЊ—жµ·йЃ“", "йќ’жЈ®зњЊ", "еІ©ж‰‹зњЊ", "е®®еџЋзњЊ", "з§‹з”°зњЊ", "е±±еЅўзњЊ", "з¦Џеі¶зњЊ", _
+                         "иЊЁеџЋзњЊ", "ж ѓжњЁзњЊ", "зѕ¤й¦¬зњЊ", "еџјзЋ‰зњЊ", "еЌѓи‘‰зњЊ", "жќ±дє¬йѓЅ", "зҐћеҐ€е·ќзњЊ", _
+                         "ж–°жЅџзњЊ", "еЇЊе±±зњЊ", "зџіе·ќзњЊ", "з¦Џдє•зњЊ", "е±±жўЁзњЊ", "й•·й‡ЋзњЊ", "еІђйњзњЊ", _
+                         "йќ™еІЎзњЊ", "ж„›зџҐзњЊ", "дё‰й‡ЌзњЊ", "ж»‹иіЂзњЊ", "дє¬йѓЅеєњ", "е¤§йЄеєњ", "е…µеє«зњЊ", _
+                         "еҐ€и‰ЇзњЊ", "е’Њж­Ње±±зњЊ", "йіҐеЏ–зњЊ", "еі¶ж №зњЊ", "еІЎе±±зњЊ", "еєѓеі¶зњЊ", "е±±еЏЈзњЊ", _
+                         "еѕіеі¶зњЊ", "й¦™е·ќзњЊ", "ж„›еЄ›зњЊ", "й«зџҐзњЊ", "з¦ЏеІЎзњЊ", "дЅђиіЂзњЊ", "й•·еґЋзњЊ", _
+                         "з†Љжњ¬зњЊ", "е¤§е€†зњЊ", "е®®еґЋзњЊ", "й№їе…ђеі¶зњЊ", "жІ–зё„зњЊ")
     End If
 
     Dim prefecture As Variant
@@ -998,8 +998,8 @@ Private Function IsAddressPrefectureStart(ByVal addressString As String) As Bool
 End Function
 
 ' ==============================================================================
-' --- “s“№•{Њ§‹t€ш‚«ђ„‘ЄЏ€—ќ ---
-' “ь—Нђж“Є‚МЋs‹ж’¬‘є–ј‚©‚зЌЕ’·€к’v‚Е“s“№•{Њ§–ј‚р“Б’и‚·‚йЃB
+' --- йѓЅйЃ“еєњзњЊйЂ†еј•гЃЌжЋЁжё¬е‡¦зђ† ---
+' е…ҐеЉ›е…€й ­гЃ®её‚еЊєз”єжќ‘еђЌгЃ‹г‚‰жњЂй•·дёЂи‡ґгЃ§йѓЅйЃ“еєњзњЊеђЌг‚’з‰№е®љгЃ™г‚‹гЂ‚
 Private Function FindPrefectureByCity(ByVal rawAddress As String) As String
     Dim normInput As String
     Dim tryLen As Long
@@ -1022,8 +1022,8 @@ Private Function FindPrefectureByCity(ByVal rawAddress As String) As String
 End Function
 
 ' ==============================================================================
-' --- ‘ж1ђ”’l’ЉЏoЏ€—ќ ---
-' ’¬–ј€к’vЊг‚МЋc‚и•¶Ћљ—с‚©‚зЃAЌЕЏ‰‚МA‘±‚·‚йђ”’lЃi’љ–Ъ‚Ь‚Ѕ‚Н”Ф’nЃj‚р’ЉЏo‚·‚йЃB
+' --- з¬¬1ж•°еЂ¤жЉЅе‡єе‡¦зђ† ---
+' з”єеђЌдёЂи‡ґеѕЊгЃ®ж®‹г‚Љж–‡е­—е€—гЃ‹г‚‰гЂЃжњЂе€ќгЃ®йЂЈз¶љгЃ™г‚‹ж•°еЂ¤пј€дёЃз›®гЃѕгЃџгЃЇз•Єењ°пј‰г‚’жЉЅе‡єгЃ™г‚‹гЂ‚
 Private Function ExtractNumberFromSuffix(ByVal suffixAddress As String) As Long
     Dim i As Long
     Dim narrowSuffix As String
@@ -1044,7 +1044,7 @@ Private Function ExtractNumberFromSuffix(ByVal suffixAddress As String) As Long
             isDigitFound = True
         Else
             If isDigitFound Then Exit For
-            If char <> "-" And char <> "‘ж" And char <> "Ћљ" And char <> "‘е" Then
+            If char <> "-" And char <> "з¬¬" And char <> "е­—" And char <> "е¤§" Then
                 Exit For
             End If
         End If
@@ -1056,8 +1056,8 @@ Private Function ExtractNumberFromSuffix(ByVal suffixAddress As String) As Long
 End Function
 
 ' ==============================================================================
-' --- ‘ж2ђ”’l’ЉЏoЏ€—ќ ---
-' Ѓu1’љ–Ъ2”ФЃv‚вЃu1-2Ѓv‚М‚ж‚¤‚И“ь—Н‚©‚зЃA2”Ф–Ъ‚Мђ”’lЃi”Ф’nЃj‚р’ЉЏo‚·‚йЃB
+' --- з¬¬2ж•°еЂ¤жЉЅе‡єе‡¦зђ† ---
+' гЂЊ1дёЃз›®2з•ЄгЂЌг‚„гЂЊ1-2гЂЌгЃ®г‚€гЃ†гЃЄе…ҐеЉ›гЃ‹г‚‰гЂЃ2з•Єз›®гЃ®ж•°еЂ¤пј€з•Єењ°пј‰г‚’жЉЅе‡єгЃ™г‚‹гЂ‚
 Private Function ExtractSecondNumberFromSuffix(ByVal suffixAddress As String) As Long
     Dim i As Long
     Dim narrowSuffix As String
@@ -1094,14 +1094,14 @@ Private Function ExtractSecondNumberFromSuffix(ByVal suffixAddress As String) As
 End Function
 
 ' ==============================================================================
-' --- Љ‡ЊК“а•¶Ћљ—с‚М’ЉЏoЏ€—ќ ---
-' ЌЕЉO‚МЉJ‚«Љ‡ЊК‚©‚з•В‚¶Љ‡ЊК‚Ь‚Е‚М’†ђg‚рђШ‚иЏo‚·ЃB
+' --- ж‹¬еј§е†…ж–‡е­—е€—гЃ®жЉЅе‡єе‡¦зђ† ---
+' жњЂе¤–гЃ®й–‹гЃЌж‹¬еј§гЃ‹г‚‰й–‰гЃж‹¬еј§гЃѕгЃ§гЃ®дё­иє«г‚’е€‡г‚Ље‡єгЃ™гЂ‚
 Private Function ExtractParenContent(ByVal targetStr As String) As String
     Dim startPos As Long, endPos As Long
-    startPos = InStr(targetStr, "Ѓi")
+    startPos = InStr(targetStr, "пј€")
     If startPos = 0 Then startPos = InStr(targetStr, "(")
 
-    endPos = InStrRev(targetStr, "Ѓj")
+    endPos = InStrRev(targetStr, "пј‰")
     If endPos = 0 Then endPos = InStrRev(targetStr, ")")
 
     If startPos > 0 And endPos > startPos Then
@@ -1114,8 +1114,8 @@ Private Function ExtractParenContent(ByVal targetStr As String) As String
 End Function
 
 ' ==============================================================================
-' --- ђ”’l”Н€НЏрЊЏ‚М•]‰їЏ€—ќ ---
-' Љ‡ЊК“а‚М”Н€НЋw’и‚Ж“ь—Нђ”’l‚р”дЉr‚µЃA1Ѓi€к’vЃjЃA-1Ѓi”Н€НЉOЃjЃA0Ѓi‘ОЏЫЉOЃj‚р•Ф‚·ЃB
+' --- ж•°еЂ¤зЇ„е›ІжќЎд»¶гЃ®и©•дѕЎе‡¦зђ† ---
+' ж‹¬еј§е†…гЃ®зЇ„е›ІжЊ‡е®љгЃЁе…ҐеЉ›ж•°еЂ¤г‚’жЇ”ијѓгЃ—гЂЃ1пј€дёЂи‡ґпј‰гЂЃ-1пј€зЇ„е›Іе¤–пј‰гЂЃ0пј€еЇѕи±Ўе¤–пј‰г‚’иї”гЃ™гЂ‚
 Private Function EvaluateNumericRange(ByVal parenContent As String, _
                                       ByVal inputVal1 As Long, _
                                       Optional ByVal inputVal2 As Long = 0) As Integer
@@ -1127,39 +1127,39 @@ Private Function EvaluateNumericRange(ByVal parenContent As String, _
     Dim hasValidRule As Boolean: hasValidRule = False
     Dim matchedPositiveRule As Boolean: matchedPositiveRule = False
 
-    ' •ЎЌ‡Ћw’иЃi’љ–ЪЃ{“Б’и”Ф’nЃj‚М”»’иЃF ѓ}ѓXѓ^‘¤‚ЙЃu’љ–ЪЃv‚ЖЃu”ФЃv‚М—ј•ы‚Є‚ ‚и“ь—Н‚Й”Ф’n‚Є‚И‚ўЏкЌ‡‚Н•s€к’v‚Ж‚·‚йЃB
-    If InStr(parenContent, "’љ–Ъ") > 0 And InStr(parenContent, "”Ф") > 0 Then
+    ' и¤‡еђ€жЊ‡е®љпј€дёЃз›®пј‹з‰№е®љз•Єењ°пј‰гЃ®е€¤е®љпјљ гѓћг‚№г‚їеЃґгЃ«гЂЊдёЃз›®гЂЌгЃЁгЂЊз•ЄгЂЌгЃ®дёЎж–№гЃЊгЃ‚г‚Ље…ҐеЉ›гЃ«з•Єењ°гЃЊгЃЄгЃ„е ґеђ€гЃЇдёЌдёЂи‡ґгЃЁгЃ™г‚‹гЂ‚
+    If InStr(parenContent, "дёЃз›®") > 0 And InStr(parenContent, "з•Є") > 0 Then
         If inputVal2 = 0 Then
             EvaluateNumericRange = -1
             Exit Function
         End If
     End If
 
-    ' ‹жђШ‚и‹LЌ†‚М“ќ€кЃF ѓ`ѓ‹ѓ_‚вѓnѓCѓtѓ“‚рЃuЃ`Ѓv‚ЙЃA“З“_‚в’†Ќ•‚рЃuЃAЃv‚Й“ќ€к‚·‚йЃB
+    ' еЊєе€‡г‚ЉиЁеЏ·гЃ®зµ±дёЂпјљ гѓЃгѓ«гѓЂг‚„гѓЏг‚¤гѓ•гѓіг‚’гЂЊпЅћгЂЌгЃ«гЂЃиЄ­з‚№г‚„дё­й»’г‚’гЂЊгЂЃгЂЌгЃ«зµ±дёЂгЃ™г‚‹гЂ‚
     cleanStr = parenContent
-    cleanStr = Replace(cleanStr, ChrW(&HFF5E), "Ѓ`")
-    cleanStr = Replace(cleanStr, ChrW(&H301C), "Ѓ`")
-    cleanStr = Replace(cleanStr, "~", "Ѓ`")
-    cleanStr = Replace(cleanStr, "Ѓ|", "Ѓ`")
-    cleanStr = Replace(cleanStr, "-", "Ѓ`")
-    cleanStr = Replace(cleanStr, ",", "ЃA")
-    cleanStr = Replace(cleanStr, "ЃE", "ЃA")
-    cleanStr = Replace(cleanStr, "‹y‚С", "ЃA")
-    cleanStr = Replace(cleanStr, "‚Ё‚ж‚С", "ЃA")
+    cleanStr = Replace(cleanStr, ChrW(&HFF5E), "пЅћ")
+    cleanStr = Replace(cleanStr, ChrW(&H301C), "пЅћ")
+    cleanStr = Replace(cleanStr, "~", "пЅћ")
+    cleanStr = Replace(cleanStr, "пјЌ", "пЅћ")
+    cleanStr = Replace(cleanStr, "-", "пЅћ")
+    cleanStr = Replace(cleanStr, ",", "гЂЃ")
+    cleanStr = Replace(cleanStr, "гѓ»", "гЂЃ")
+    cleanStr = Replace(cleanStr, "еЏЉгЃі", "гЂЃ")
+    cleanStr = Replace(cleanStr, "гЃЉг‚€гЃі", "гЂЃ")
 
-    segments = Split(cleanStr, "ЃA")
+    segments = Split(cleanStr, "гЂЃ")
 
-    ' ѓZѓOѓЃѓ“ѓg•К”»’иѓ‹Ѓ[ѓvЃF ѓJѓ“ѓ}‚Е•ЄЉ„‚і‚к‚ЅЉeЏрЊЏ‚Й‘О‚µ‚Д”Н€Н“а‚©ЏњЉO‘ОЏЫ‚©‚р”»’и‚·‚йЃB
+    ' г‚»г‚°гѓЎгѓігѓ€е€Ґе€¤е®љгѓ«гѓјгѓ—пјљ г‚«гѓігѓћгЃ§е€†е‰ІгЃ•г‚ЊгЃџеђ„жќЎд»¶гЃ«еЇѕгЃ—гЃ¦зЇ„е›Іе†…гЃ‹й™¤е¤–еЇѕи±ЎгЃ‹г‚’е€¤е®љгЃ™г‚‹гЂ‚
     For Each seg In segments
         sItem = Trim(CStr(seg))
         If sItem <> "" Then
-            isExclude = (InStr(sItem, "Џњ‚­") > 0 Or InStr(sItem, "€ИЉO") > 0)
+            isExclude = (InStr(sItem, "й™¤гЃЏ") > 0 Or InStr(sItem, "д»Ґе¤–") > 0)
             sItem = StripRangeUnits(sItem)
 
-            If InStr(sItem, "Ѓ`") > 0 Then
+            If InStr(sItem, "пЅћ") > 0 Then
                 Dim parts() As String
                 Dim rStart As Long, rEnd As Long
-                parts = Split(sItem, "Ѓ`")
+                parts = Split(sItem, "пЅћ")
                 rStart = ExtractFirstLong(parts(0))
                 rEnd = ExtractFirstLong(parts(1))
 
@@ -1202,33 +1202,33 @@ Private Function EvaluateNumericRange(ByVal parenContent As String, _
 End Function
 
 ' ==============================================================================
-' --- ”Н€Н’P€К•¶Ћљ‚МЏњ‹ЋЏ€—ќ ---
-' ”Н€Н”дЉr—p‚ЙЃu’љ–ЪЃvЃu”Ф’nЃvЃu’nЉ„ЃvЃu‚рЏњ‚­Ѓv“™‚М•¶Ћљ—с‚рЏњ‹Ћ‚·‚йЃB
+' --- зЇ„е›ІеЌдЅЌж–‡е­—гЃ®й™¤еЋ»е‡¦зђ† ---
+' зЇ„е›ІжЇ”ијѓз”ЁгЃ«гЂЊдёЃз›®гЂЌгЂЊз•Єењ°гЂЌгЂЊењ°е‰ІгЂЌгЂЊг‚’й™¤гЃЏгЂЌз­‰гЃ®ж–‡е­—е€—г‚’й™¤еЋ»гЃ™г‚‹гЂ‚
 Private Function StripRangeUnits(ByVal s As String) As String
     Dim res As String
     res = s
-    res = Replace(res, "’љ–Ъ", "")
-    res = Replace(res, "’љ", "")
-    res = Replace(res, "”Ф’n", "")
-    res = Replace(res, "”Ф", "")
-    res = Replace(res, "Ќ†", "")
-    res = Replace(res, "’nЉ„", "")
-    res = Replace(res, "‘ж", "")
-    res = Replace(res, "‚рЏњ‚­", "")
-    res = Replace(res, "€ИЉO", "")
+    res = Replace(res, "дёЃз›®", "")
+    res = Replace(res, "дёЃ", "")
+    res = Replace(res, "з•Єењ°", "")
+    res = Replace(res, "з•Є", "")
+    res = Replace(res, "еЏ·", "")
+    res = Replace(res, "ењ°е‰І", "")
+    res = Replace(res, "з¬¬", "")
+    res = Replace(res, "г‚’й™¤гЃЏ", "")
+    res = Replace(res, "д»Ґе¤–", "")
     StripRangeUnits = res
 End Function
 
 ' ==============================================================================
-' --- •¶Ћљ—сђж“Єђ”’l‚МЋж“ѕЏ€—ќ ---
-' •вЏ•ЉЦђ”‚Ж‚µ‚Д•¶Ћљ—с‚©‚зЌЕЏ‰‚Мђ®ђ”‚р•Ф‚·ЃB
+' --- ж–‡е­—е€—е…€й ­ж•°еЂ¤гЃ®еЏ–еѕ—е‡¦зђ† ---
+' иЈњеЉ©й–ўж•°гЃЁгЃ—гЃ¦ж–‡е­—е€—гЃ‹г‚‰жњЂе€ќгЃ®ж•ґж•°г‚’иї”гЃ™гЂ‚
 Private Function ExtractFirstLong(ByVal s As String) As Long
     ExtractFirstLong = ExtractNumberFromSuffix(s)
 End Function
 
 ' ==============================================================================
-' --- ExcelЌ‚‘¬‰»ђЭ’и‚МђШ‘ЦЏ€—ќ ---
-' ‰ж–К•`‰жЃAѓCѓxѓ“ѓgЃAЋ©“®ЊvЋZ‚М—LЊшЃE–іЊш‚р€кЉ‡‚ЕђШ‚и‘Ц‚¦‚йЃB
+' --- Excelй«йЂџеЊ–иЁ­е®љгЃ®е€‡ж›їе‡¦зђ† ---
+' з”»йќўжЏЏз”»гЂЃг‚¤гѓ™гѓігѓ€гЂЃи‡Єе‹•иЁ€з®—гЃ®жњ‰еЉ№гѓ»з„ЎеЉ№г‚’дёЂж‹¬гЃ§е€‡г‚Љж›їгЃ€г‚‹гЂ‚
 Private Sub ToggleOptimizations(ByVal isEnabled As Boolean)
     With Application
         .ScreenUpdating = isEnabled
@@ -1238,8 +1238,8 @@ Private Sub ToggleOptimizations(ByVal isEnabled As Boolean)
 End Sub
 
 ' ==============================================================================
-' --- ѓVЃ[ѓgЋж“ѕЃEђ¶ђ¬Џ€—ќ ---
-' Ћw’и–ј‚МѓVЃ[ѓg‚рЋж“ѕ‚µЃA‘¶ЌЭ‚µ‚И‚ўЏкЌ‡‚Н––”ц‚ЙђV‹KЌмђ¬‚·‚йЃB
+' --- г‚·гѓјгѓ€еЏ–еѕ—гѓ»з”џж€ђе‡¦зђ† ---
+' жЊ‡е®љеђЌгЃ®г‚·гѓјгѓ€г‚’еЏ–еѕ—гЃ—гЂЃе­ењЁгЃ—гЃЄгЃ„е ґеђ€гЃЇжњ«е°ѕгЃ«ж–°и¦ЏдЅњж€ђгЃ™г‚‹гЂ‚
 Private Function GetOrCreateSheet(sheetName As String) As Worksheet
     On Error Resume Next
     Set GetOrCreateSheet = ThisWorkbook.Sheets(sheetName)
@@ -1252,8 +1252,8 @@ Private Function GetOrCreateSheet(sheetName As String) As Worksheet
 End Function
 
 ' ==============================================================================
-' --- —X•Ц”ФЌ†7Њ…ђ®Њ`Џ€—ќ ---
-' ѓnѓCѓtѓ“‚в‹у”’‚рЏњ‹Ћ‚µЃAђж“Єѓ[ѓЌ—Ћ‚ї‚М6Њ…ђ”Ћљ‚Й‚Н0‚р•вЉ®‚·‚йЃB
+' --- йѓµдѕїз•ЄеЏ·7жЎЃж•ґеЅўе‡¦зђ† ---
+' гѓЏг‚¤гѓ•гѓіг‚„з©єз™Ѕг‚’й™¤еЋ»гЃ—гЂЃе…€й ­г‚јгѓ­иђЅгЃЎгЃ®6жЎЃж•°е­—гЃ«гЃЇ0г‚’иЈње®ЊгЃ™г‚‹гЂ‚
 Private Function FormatZip(ByVal rawZip As String) As String
     Dim cleanZip As String
 
@@ -1268,8 +1268,8 @@ Private Function FormatZip(ByVal rawZip As String) As String
 End Function
 
 ' ==============================================================================
-' --- Џo—Н—p—X•Ц”ФЌ†ђ®Њ`Џ€—ќ ---
-' 7Њ…‚М—X•Ц”ФЌ†•¶Ћљ—с‚ЦѓnѓCѓtѓ“Ѓi123-4567Њ`Ћ®Ѓj‚р•t—^‚·‚йЃB
+' --- е‡єеЉ›з”Ёйѓµдѕїз•ЄеЏ·ж•ґеЅўе‡¦зђ† ---
+' 7жЎЃгЃ®йѓµдѕїз•ЄеЏ·ж–‡е­—е€—гЃёгѓЏг‚¤гѓ•гѓіпј€123-4567еЅўејЏпј‰г‚’д»дёЋгЃ™г‚‹гЂ‚
 Private Function FormatZipForOutput(ByVal cleanZip7 As String) As String
     If Len(cleanZip7) = 7 And IsNumeric(cleanZip7) Then
         FormatZipForOutput = Left(cleanZip7, 3) & "-" & Right(cleanZip7, 4)
@@ -1279,8 +1279,8 @@ Private Function FormatZipForOutput(ByVal cleanZip7 As String) As String
 End Function
 
 ' ==============================================================================
-' --- ѓZѓ‹“а€к’v•¶Ћљ‚МђФђF’…ђFЏ€—ќ ---
-' “ь—НЏZЏЉ‚Жѓ}ѓXѓ^ЏZЏЉ‚рѓ|ѓCѓ“ѓ^”дЉr‚µЃA€к’v‚µ‚Ѕђж“Є•¶ЋљЊQ‚рђФђF‚Й‚·‚йЃB
+' --- г‚»гѓ«е†…дёЂи‡ґж–‡е­—гЃ®иµ¤и‰ІзќЂи‰Іе‡¦зђ† ---
+' е…ҐеЉ›дЅЏж‰ЂгЃЁгѓћг‚№г‚їдЅЏж‰Ђг‚’гѓќг‚¤гѓіг‚їжЇ”ијѓгЃ—гЂЃдёЂи‡ґгЃ—гЃџе…€й ­ж–‡е­—зѕ¤г‚’иµ¤и‰ІгЃ«гЃ™г‚‹гЂ‚
 Private Sub ColorMatchInCell(ByVal ws As Worksheet, ByVal rowIdx As Long, ByVal rawAddress As String, _
                               ByVal masterFullAddress As String, ByVal masterTownRaw As String)
     Dim targetCell As Range
@@ -1290,20 +1290,20 @@ Private Sub ColorMatchInCell(ByVal ws As Worksheet, ByVal rowIdx As Long, ByVal 
     Dim masterPrefAndCityNormalized As String
     Dim masterTownNormalized As String
 
-    ' ѓ}ѓXѓ^•¶Ћљ—с‚Мђі‹K‰»‚Ж•ЄЉ„ЃF “s“№•{Њ§Ѓ{Ћs‹ж’¬‘є•”•Є‚Ж’¬–ј•”•Є‚М‹«ЉE‚р“Б’и‚·‚йЃB
+    ' гѓћг‚№г‚їж–‡е­—е€—гЃ®ж­Ји¦ЏеЊ–гЃЁе€†е‰Іпјљ йѓЅйЃ“еєњзњЊпј‹её‚еЊєз”єжќ‘йѓЁе€†гЃЁз”єеђЌйѓЁе€†гЃ®еўѓз•Њг‚’з‰№е®љгЃ™г‚‹гЂ‚
     cleanMasterBaseStr = NormalizeAddress(masterFullAddress)
     masterTownNormalized = NormalizeAddress(RemoveRangeSuffixTownName(masterTownRaw))
     masterPrefAndCityNormalized = Left(cleanMasterBaseStr, Len(cleanMasterBaseStr) - Len(masterTownNormalized))
 
-    ' ’…ђFЉJЋnѓ|ѓCѓ“ѓ^‚МЊ€’иЃF “ь—НЏZЏЉ‚Е“s“№•{Њ§‚ЄЏИ—Є‚і‚к‚Д‚ў‚йЏкЌ‡‚Нѓ}ѓXѓ^‘¤‚МЊ§–ј•¶Ћљђ”•Є‚рѓXѓLѓbѓv‚·‚йЃB
+    ' зќЂи‰Ій–‹е§‹гѓќг‚¤гѓіг‚їгЃ®ж±єе®љпјљ е…ҐеЉ›дЅЏж‰ЂгЃ§йѓЅйЃ“еєњзњЊгЃЊзњЃз•ҐгЃ•г‚ЊгЃ¦гЃ„г‚‹е ґеђ€гЃЇгѓћг‚№г‚їеЃґгЃ®зњЊеђЌж–‡е­—ж•°е€†г‚’г‚№г‚­гѓѓгѓ—гЃ™г‚‹гЂ‚
     Dim currentMatchPos As Long: currentMatchPos = 1
     Dim suffixPos As Long
     Dim masterPrefLen As Long
 
-    suffixPos = InStr(masterPrefAndCityNormalized, "Њ§")
-    If suffixPos = 0 Then suffixPos = InStr(masterPrefAndCityNormalized, "•{")
-    If suffixPos = 0 Then suffixPos = InStr(masterPrefAndCityNormalized, "“№")
-    If suffixPos = 0 Then suffixPos = InStr(masterPrefAndCityNormalized, "“s")
+    suffixPos = InStr(masterPrefAndCityNormalized, "зњЊ")
+    If suffixPos = 0 Then suffixPos = InStr(masterPrefAndCityNormalized, "еєњ")
+    If suffixPos = 0 Then suffixPos = InStr(masterPrefAndCityNormalized, "йЃ“")
+    If suffixPos = 0 Then suffixPos = InStr(masterPrefAndCityNormalized, "йѓЅ")
 
     If suffixPos > 0 Then
         masterPrefLen = suffixPos
@@ -1315,7 +1315,7 @@ Private Sub ColorMatchInCell(ByVal ws As Worksheet, ByVal rowIdx As Long, ByVal 
         currentMatchPos = masterPrefLen + 1
     End If
 
-    ' •¶Ћљ’P€К‚Мѓ|ѓCѓ“ѓ^ЏЖЌ‡ѓ‹Ѓ[ѓvЃF ‹у”’ЃA‘еЋљЃEЋљ‚М•\‹LЌ·ЃAЊSЏИ—ЄЃA•ЎЌ‡Љїђ”Ћљ‚р‹zЋы‚µ‚И‚Є‚з€к’v’·‚рЊv‘Є‚·‚йЃB
+    ' ж–‡е­—еЌдЅЌгЃ®гѓќг‚¤гѓіг‚їз…§еђ€гѓ«гѓјгѓ—пјљ з©єз™ЅгЂЃе¤§е­—гѓ»е­—гЃ®иЎЁиЁе·®гЂЃйѓЎзњЃз•ҐгЂЃи¤‡еђ€жјўж•°е­—г‚’еђёеЏЋгЃ—гЃЄгЃЊг‚‰дёЂи‡ґй•·г‚’иЁ€жё¬гЃ™г‚‹гЂ‚
     Dim currentRawPos As Long: currentRawPos = 1
     Dim matchedCharCount As Long: matchedCharCount = 0
     Dim rawLen As Long: rawLen = Len(rawAddress)
@@ -1325,38 +1325,38 @@ Private Sub ColorMatchInCell(ByVal ws As Worksheet, ByVal rowIdx As Long, ByVal 
         Dim rawChar As String
         rawChar = Mid(rawAddress, currentRawPos, 1)
 
-        ' ‹у”’‚МѓXѓLѓbѓvЃF “ь—Н‘¤‚МѓXѓyЃ[ѓX‚Нѓ|ѓCѓ“ѓ^‚М‚Эђi‚Я‚йЃB
+        ' з©єз™ЅгЃ®г‚№г‚­гѓѓгѓ—пјљ е…ҐеЉ›еЃґгЃ®г‚№гѓљгѓјг‚№гЃЇгѓќг‚¤гѓіг‚їгЃ®гЃїйЂІг‚Ѓг‚‹гЂ‚
         If rawChar = " " Or rawChar = " " Then
             currentRawPos = currentRawPos + 1
             GoTo NextCharLoop
         End If
 
-        ' “ь—Н‘¤‚М‘еЋљЃEЋљ‚МѓXѓLѓbѓvЃF “ь—Н‘¤‚Й‚М‚ЭЃu‘еЋљЃvЃuЏ¬ЋљЃvЃuЋљЃv‚Є‚ ‚йЏкЌ‡‚Н“ь—Нѓ|ѓCѓ“ѓ^‚рђi‚Я‚йЃB
-        If Mid(rawAddress, currentRawPos, 2) = "‘еЋљ" Or Mid(rawAddress, currentRawPos, 2) = "Џ¬Ћљ" Then
+        ' е…ҐеЉ›еЃґгЃ®е¤§е­—гѓ»е­—гЃ®г‚№г‚­гѓѓгѓ—пјљ е…ҐеЉ›еЃґгЃ«гЃ®гЃїгЂЊе¤§е­—гЂЌгЂЊе°Џе­—гЂЌгЂЊе­—гЂЌгЃЊгЃ‚г‚‹е ґеђ€гЃЇе…ҐеЉ›гѓќг‚¤гѓіг‚їг‚’йЂІг‚Ѓг‚‹гЂ‚
+        If Mid(rawAddress, currentRawPos, 2) = "е¤§е­—" Or Mid(rawAddress, currentRawPos, 2) = "е°Џе­—" Then
             If Mid(cleanMasterBaseStr, currentMatchPos, 2) <> Mid(rawAddress, currentRawPos, 2) Then
                 currentRawPos = currentRawPos + 2
                 matchedCharCount = currentRawPos - 1
                 GoTo NextCharLoop
             End If
-        ElseIf rawChar = "Ћљ" Then
-            If Mid(cleanMasterBaseStr, currentMatchPos, 1) <> "Ћљ" Then
+        ElseIf rawChar = "е­—" Then
+            If Mid(cleanMasterBaseStr, currentMatchPos, 1) <> "е­—" Then
                 currentRawPos = currentRawPos + 1
                 matchedCharCount = currentRawPos - 1
                 GoTo NextCharLoop
             End If
         End If
 
-        ' ѓ}ѓXѓ^‘¤‚М‘еЋљЃEЋљ‚Ё‚ж‚СЊS–ј‚МѓXѓLѓbѓvЃF “ь—Н‘¤‚ЕЏИ—Є‚і‚к‚Д‚ў‚йЏкЌ‡‚Нѓ}ѓXѓ^ѓ|ѓCѓ“ѓ^‚рђi‚Я‚йЃB
-        If Mid(cleanMasterBaseStr, currentMatchPos, 2) = "‘еЋљ" And Mid(rawAddress, currentRawPos, 2) <> "‘еЋљ" Then
+        ' гѓћг‚№г‚їеЃґгЃ®е¤§е­—гѓ»е­—гЃЉг‚€гЃійѓЎеђЌгЃ®г‚№г‚­гѓѓгѓ—пјљ е…ҐеЉ›еЃґгЃ§зњЃз•ҐгЃ•г‚ЊгЃ¦гЃ„г‚‹е ґеђ€гЃЇгѓћг‚№г‚їгѓќг‚¤гѓіг‚їг‚’йЂІг‚Ѓг‚‹гЂ‚
+        If Mid(cleanMasterBaseStr, currentMatchPos, 2) = "е¤§е­—" And Mid(rawAddress, currentRawPos, 2) <> "е¤§е­—" Then
             currentMatchPos = currentMatchPos + 2
             GoTo NextCharLoop
-        ElseIf Mid(cleanMasterBaseStr, currentMatchPos, 1) = "Ћљ" And rawChar <> "Ћљ" Then
+        ElseIf Mid(cleanMasterBaseStr, currentMatchPos, 1) = "е­—" And rawChar <> "е­—" Then
             currentMatchPos = currentMatchPos + 1
             GoTo NextCharLoop
         End If
 
         Dim gunPosInMaster As Long
-        gunPosInMaster = InStr(currentMatchPos, masterPrefAndCityNormalized, "ЊS")
+        gunPosInMaster = InStr(currentMatchPos, masterPrefAndCityNormalized, "йѓЎ")
         If gunPosInMaster > currentMatchPos Then
             If NormalizeAddress(rawChar) <> Mid(cleanMasterBaseStr, currentMatchPos, 1) Then
                 If NormalizeAddress(rawChar) = Mid(cleanMasterBaseStr, gunPosInMaster + 1, 1) Then
@@ -1365,10 +1365,10 @@ Private Sub ColorMatchInCell(ByVal ws As Worksheet, ByVal rowIdx As Long, ByVal 
             End If
         End If
 
-        ' Љїђ”ЋљѓgЃ[ѓNѓ“‚МЏЖЌ‡ЃF ЃuЏ\“сЃv‚ЖЃu‚P‚QЃv‚И‚З•¶Ћљђ”‚Є•П‰»‚·‚йЉїђ”Ћљ—с‚р€кЉ‡”дЉr‚·‚йЃB
-        If InStr("ЃZ€к“сЋOЋlЊЬZЋµ”Є‹гЏ\•S", rawChar) > 0 Then
+        ' жјўж•°е­—гѓ€гѓјг‚ЇгѓігЃ®з…§еђ€пјљ гЂЊеЌЃдєЊгЂЌгЃЁгЂЊпј‘пј’гЂЌгЃЄгЃ©ж–‡е­—ж•°гЃЊе¤‰еЊ–гЃ™г‚‹жјўж•°е­—е€—г‚’дёЂж‹¬жЇ”ијѓгЃ™г‚‹гЂ‚
+        If InStr("гЂ‡дёЂдєЊдё‰е››дє”е…­дёѓе…«д№ќеЌЃз™ѕ", rawChar) > 0 Then
             Dim kEnd As Long: kEnd = currentRawPos
-            Do While kEnd < rawLen And InStr("ЃZ€к“сЋOЋlЊЬZЋµ”Є‹гЏ\•S", Mid(rawAddress, kEnd + 1, 1)) > 0
+            Do While kEnd < rawLen And InStr("гЂ‡дёЂдєЊдё‰е››дє”е…­дёѓе…«д№ќеЌЃз™ѕ", Mid(rawAddress, kEnd + 1, 1)) > 0
                 kEnd = kEnd + 1
             Loop
             Dim rawKanjiToken As String
@@ -1384,7 +1384,7 @@ Private Sub ColorMatchInCell(ByVal ws As Worksheet, ByVal rowIdx As Long, ByVal 
             End If
         End If
 
-        ' ’КЏн•¶Ћљ‚М1•¶Ћљ”дЉrЃF ђі‹K‰»Њг‚М1•¶Ћљ‚Є€к’v‚·‚к‚О‘o•ы‚Мѓ|ѓCѓ“ѓ^‚рђi‚Я‚йЃB
+        ' йЂљеёёж–‡е­—гЃ®1ж–‡е­—жЇ”ијѓпјљ ж­Ји¦ЏеЊ–еѕЊгЃ®1ж–‡е­—гЃЊдёЂи‡ґгЃ™г‚ЊгЃ°еЏЊж–№гЃ®гѓќг‚¤гѓіг‚їг‚’йЂІг‚Ѓг‚‹гЂ‚
         Dim rawCharNormalized As String
         Dim normalizedChar As String
         rawCharNormalized = NormalizeAddress(rawChar)
@@ -1400,7 +1400,7 @@ Private Sub ColorMatchInCell(ByVal ws As Worksheet, ByVal rowIdx As Long, ByVal 
 NextCharLoop:
     Loop
 
-    ' ђФђF’…ђF‚М“K—pЃF €к’v‚µ‚Ѕ•¶Ћљђ”•Є‚ѕ‚ЇѓZѓ‹ђж“Є‚©‚з‚МѓtѓHѓ“ѓgђF‚рђФ‚ЙђЭ’и‚·‚йЃB
+    ' иµ¤и‰ІзќЂи‰ІгЃ®йЃ©з”Ёпјљ дёЂи‡ґгЃ—гЃџж–‡е­—ж•°е€†гЃ гЃ‘г‚»гѓ«е…€й ­гЃ‹г‚‰гЃ®гѓ•г‚©гѓігѓ€и‰Іг‚’иµ¤гЃ«иЁ­е®љгЃ™г‚‹гЂ‚
     With targetCell
         .Font.ColorIndex = xlAutomatic
         If matchedCharCount > 0 Then
@@ -1410,26 +1410,26 @@ NextCharLoop:
 End Sub
 
 ' ==============================================================================
-' --- Џ€—ќ’†ѓtѓHЃ[ѓЂ•\Ћ¦Џ€—ќ ---
-' ѓ‚Ѓ[ѓhѓЊѓX‚Еђi’»•\Ћ¦—pUserForm‚рЉJ‚­ЃB
-Sub frm_msgЏ€—ќ’†OP()
+' --- е‡¦зђ†дё­гѓ•г‚©гѓјгѓ иЎЁз¤єе‡¦зђ† ---
+' гѓўгѓјгѓ‰гѓ¬г‚№гЃ§йЂІжЌ—иЎЁз¤єз”ЁUserFormг‚’й–‹гЃЏгЂ‚
+Sub frm_msgе‡¦зђ†дё­OP()
     On Error Resume Next
-'    If frm_msgЏ€—ќ’† Is Nothing Then
-'        Load frm_msgЏ€—ќ’†
+'    If frm_msgе‡¦зђ†дё­ Is Nothing Then
+'        Load frm_msgе‡¦зђ†дё­
 '    End If
-'    frm_msgЏ€—ќ’†.Show (vbModeless)
+'    frm_msgе‡¦зђ†дё­.Show (vbModeless)
     DoEvents
     On Error GoTo 0
 End Sub
 
 ' ==============================================================================
-' --- Џ€—ќ’†ѓtѓHЃ[ѓЂЏI—№Џ€—ќ ---
-' •\Ћ¦’†‚Мђi’»UserForm‚рѓAѓ“ѓЌЃ[ѓh‚·‚йЃB
-Sub frm_msgЏ€—ќ’†CL()
+' --- е‡¦зђ†дё­гѓ•г‚©гѓјгѓ зµ‚дє†е‡¦зђ† ---
+' иЎЁз¤єдё­гЃ®йЂІжЌ—UserFormг‚’г‚ўгѓігѓ­гѓјгѓ‰гЃ™г‚‹гЂ‚
+Sub frm_msgе‡¦зђ†дё­CL()
     On Error Resume Next
-'    If Not frm_msgЏ€—ќ’† Is Nothing Then
-'        If frm_msgЏ€—ќ’†.Visible = True Then
-'            Unload frm_msgЏ€—ќ’†
+'    If Not frm_msgе‡¦зђ†дё­ Is Nothing Then
+'        If frm_msgе‡¦зђ†дё­.Visible = True Then
+'            Unload frm_msgе‡¦зђ†дё­
 '        End If
 '    End If
     DoEvents
